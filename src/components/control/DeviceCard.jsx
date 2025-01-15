@@ -49,7 +49,7 @@ function DeviceCard({ name, icon }) {
             className="text-[#93D50A] p-1"
             onClick={(e) => {
               e.stopPropagation();
-              toggleModal(true);
+              toggleAside(true);
             }}
           >
             <Schedule sizes={22} />
