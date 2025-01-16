@@ -3,24 +3,36 @@ import Select from "./Select";
 import Close from "../../icons/Close";
 import Add from "../../icons/Add";
 import Time from "./Time";
+import ScheduleCard from "../ScheduleCard";
 
 function Aside() {
   const { aside, toggleAside } = useStore();
 
   return (
-    <>
-      {aside && (
-        <div
-          onClick={() => toggleAside(false)}
-          className="w-screen h-screen bg-black fixed top-0 left-0 bg-opacity-70 z-10"
-        ></div>
-      )}
-      <aside
-        className={`fixed h-screen min-w-96 w-[450px] top-0 right-0 bg-white border-l px-10 py-12 z-10 flex flex-col gap-5 transition-all text-[#606060] ${
-          aside ? "translate-x-0" : "translate-x-full"
-        } duration-500`}
+    <div
+      className={`inset-0 fixed  text-[#606060] flex items-center ${
+        aside ? "z-10 bg-black bg-opacity-70" : "pointer-events-none"
+      }`}
+    >
+      <div
+        className="grow h-full p-10"
       >
-        <div className="flex items-start justify-between">
+        <div
+          className={`w-full h-full bg-white rounded-sm flex items-center justify-center ${
+            aside ? "scale-100" : "scale-0"
+          } transition-all duration-500`}
+        >
+          {/* <p>No hay tareas programadas.</p> */}
+          <ScheduleCard/>
+        </div>
+      </div>
+
+      <div
+        className={`w-[450px] border h-full bg-white px-10 py-12 flex flex-col gap-5 ${
+          aside ? "translate-x-0" : "translate-x-full"
+        } transition-all duration-500`}
+      >
+        <div className="flex items-start justify-between w-full">
           <div>
             <h1 className="text-lg font-medium">Horario Del Control</h1>
             <p>Programar acciones al dispositivo.</p>
@@ -39,10 +51,10 @@ function Aside() {
             className="relative border w-full px-5 py-2 rounded flex items-center justify-between cursor-pointer ring-[#513685] ring-offset-1 hover:ring-2 focus:outline-none focus-within:ring-2 transition-all"
           />
           <Time />
-          <Select name={"Dias de la semana"}/>
-          <Select name={"Dias del Mes"}/>
-          <Select name={"Meses"}/>
-          <Select />
+          <Select name={"Dias de la semana"} />
+          <Select name={"Dias del Mes"} />
+          <Select name={"Meses"} />
+          <Select name={"Accion"} />
           <label htmlFor="" className="flex items-center gap-2 px-1 py-1">
             <input type="checkbox" name="" id="" className="size-4" />
             Activo
@@ -52,8 +64,8 @@ function Aside() {
           <Add sizes={20} />
           Añadir Tarea
         </button>
-      </aside>
-    </>
+      </div>
+    </div>
   );
 }
 

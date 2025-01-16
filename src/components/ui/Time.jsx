@@ -6,7 +6,7 @@ function Time() {
 
   return (
     <div className="relative border w-full px-5 py-2 rounded flex items-center gap-3 cursor-pointer ring-[#513685] ring-offset-1 hover:ring-2 transition-all">
-      <Clock sizes={20} /> Hora
+      Hora
     </div>
   );
 }

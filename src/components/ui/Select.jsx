@@ -7,6 +7,7 @@ function Select({ name }) {
   return (
     <div
       onClick={() => setShow(!show)}
+      onMouseLeave={() => setShow(false)}
       className="relative border w-full px-5 py-2 rounded flex items-center justify-between cursor-pointer ring-[#513685] ring-offset-1 hover:ring-2 transition-all"
     >
       {name}

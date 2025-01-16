@@ -7,7 +7,7 @@ function Air({sizes}) {
     >
       <g
         fill="none"
-        stroke="#000000"
+        stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="1.5"

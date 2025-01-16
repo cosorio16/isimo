@@ -3,7 +3,7 @@ function Power({ sizes }) {
     <svg width={sizes} height={sizes} viewBox="0 0 24 24">
       <path
         fill="none"
-        stroke="#000000"
+        stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
