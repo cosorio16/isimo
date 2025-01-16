@@ -1,6 +1,6 @@
 import useStore from "./store/store";
 import Control from "./views/Control";
-import Home from "./icons/Home";
+import Home from "./views/Home";
 
 function App() {
   const { view } = useStore();

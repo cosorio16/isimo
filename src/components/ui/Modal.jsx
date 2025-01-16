@@ -9,12 +9,12 @@ function Modal() {
       {createPortal(
         <>
           <div
-            className={`fixed  bg-opacity-50 w-screen h-screen top-0 left-0 flex items-center justify-center py-20 px-40 ${
+            className={`fixed  bg-opacity-70 w-screen h-screen top-0 left-0 flex items-center justify-center py-20 px-40 ${
               modal ? "bg-black z-10" : "-z-10"
             }`}
           >
             <div
-              className={`min-w-full min-h-full bg-white rounded-xl p-5 flex flex-col ${
+              className={`min-w-full min-h-full bg-white rounded-sm p-5 flex flex-col ${
                 modal ? "scale-100" : "scale-0 "
               } transition-all duration-300`}
             >
