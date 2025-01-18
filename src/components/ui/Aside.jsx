@@ -3,6 +3,7 @@ import Select from "./Select";
 import Close from "../../icons/Close";
 import Add from "../../icons/Add";
 import Date from "./Date";
+import ScheduleCard from "../../components/ScheduleCard";
 
 function Aside() {
   const { aside, toggleAside } = useStore();
@@ -39,19 +40,24 @@ function Aside() {
     "Diciembre",
   ];
 
+  let tasks = [1];
+
   return (
     <div
-      className={`inset-0 fixed  text-[#606060] flex items-center ${
+      className={`inset-0 fixed  text-[#606060] flex items-center select-none ${
         aside ? "z-10 bg-black bg-opacity-70" : "pointer-events-none"
       }`}
     >
       <div className="grow h-full p-10">
         <div
-          className={`w-full h-full bg-white rounded-sm flex items-center justify-center ${
-            aside ? "scale-100" : "scale-0"
-          } transition-all duration-500`}
+          className={`w-full h-full bg-white rounded-sm grid grid-cols-3 gap-5 p-5 overflow-y-scroll  ${
+            tasks.length == 0 && "flex justify-center items-center"
+          } ${aside ? "scale-100" : "scale-0"} transition-all duration-500`}
         >
-          <p>No hay tareas programadas.</p>
+          {tasks.length == 0 && <p>No hay tareas programadas.</p>}
+          {[...Array(20)].map((c, i) => (
+            <ScheduleCard key={i} />
+          ))}
         </div>
       </div>
 
@@ -83,7 +89,7 @@ function Aside() {
               type="time"
               name=""
               id=""
-              className="border justify-between flex items-center w-full py-2 px-5 focus:outline-none hover:ring-2 ring-[#513685] ring-offset-1 focus:ring-2 rounded cursor-pointer transition-all"
+              className="border px-5 w-full h-full  focus:outline-none hover:ring-2 ring-[#513685] ring-offset-1 focus:ring-2 rounded cursor-pointer transition-all"
             />
             <Select name={"Accion"} options={optionsDate} />
           </div>

@@ -6,7 +6,7 @@ function Modal() {
   const { modal, toggleModal } = useStore();
   return (
     <div
-      className={`fixed inset-0 pt-10 px-5 text-[#606060] ${
+      className={`fixed inset-0 pt-10 px-5 text-[#606060] select-none ${
         modal
           ? "bg-black bg-opacity-60 z-10"
           : "bg-transparent pointer-events-none"

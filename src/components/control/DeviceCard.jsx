@@ -8,6 +8,7 @@ import Lamp from "../../icons/Lamp";
 import Air from "../../icons/Air";
 import Ice from "../../icons/Ice";
 import NumberFlow from "@number-flow/react";
+import Arrow from "../../icons/Arrow";
 
 function DeviceCard({ name, icon, isAir }) {
   const { toggleAside, toggleModal } = useStore();
@@ -17,35 +18,60 @@ function DeviceCard({ name, icon, isAir }) {
   const icons = [Lamp, Air, Ice];
   const Icon = icons[icon];
 
+  const handleAddRange = () => {
+    range < 32 && setRange((range) => range + 1);
+  };
+
+  const handleMinusRange = () => {
+    range > 16 && setRange((range) => range - 1);
+  };
+
+  console.log(range);
+
   return (
-    <div className="flex min-w-56 w-full border flex-col gap-3 px-4 py-6 rounded-md shadow hover:shadow-lg cursor-pointer bg-white h-fit text-[#606060] transition-all duration-300">
+    <div className="flex min-w-56 w-full max-w-full border flex-col gap-3 px-4 py-6 rounded-md shadow hover:shadow-lg cursor-pointer bg-white h-fit text-[#606060] transition-all duration-300">
       <div className="flex items-center justify-between border-b pb-5">
         <div className="flex items-center gap-4">
           {Icon && (
             <span className="border aspect-square p-2 rounded-full text-[#513685] bg-lime-100">
-              <Icon sizes={25} />
+              <Icon sizes={30} />
             </span>
           )}
-          <div>
-            <h1 className="text-xl">{name}</h1>
-            <span className="text-sm ">status</span>
-          </div>
+          <h1 className="text-lg 2xl:text-xl text-start text-ellipsis truncate">
+            {name}
+          </h1>
         </div>
         <Toogle />
       </div>
 
       {isAir && (
-        <div className="flex flex-col gap-5">
-          <span className="flex items-center gap-2 border justify-center px-5 py-2 font-medium text-white rounded bg-[#513685] bg-opacity-90">
-            <Ice sizes={20} />
-            <NumberFlow value={range}/>
-          </span>
+        <div className="flex flex-col gap-6">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => handleAddRange()}
+                className="rounded border bg-slate-50 text-[#513685] p-2 rotate-[90deg] "
+              >
+                <Arrow sizes={25} />
+              </button>
+              <button
+                onClick={() => handleMinusRange()}
+                className="rounded border bg-slate-50 text-[#513685] p-2 rotate-[270deg] "
+              >
+                <Arrow sizes={25} />
+              </button>
+            </div>
+            <span className="flex items-center gap-2 border justify-center px-5 py-2 font-medium text-white rounded bg-[#513685] bg-opacity-90">
+              <Ice sizes={20} />
+              <NumberFlow value={range} />
+            </span>
+          </div>
           <input
             min={16}
             max={32}
-            defaultValue={range}
-            onMouseUp={(e) => console.log(e.target.value)}
-            onChange={(e) => setRange(e.target.value)}
+            value={range}
+            // onMouseUp={(e) => setRange(Number(e.target.value))}
+            onChange={(e) => setRange(Number(e.target.value))}
             type="range"
             name=""
             id=""

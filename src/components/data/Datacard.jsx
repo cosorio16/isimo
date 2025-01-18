@@ -13,7 +13,7 @@ function Datacard() {
       <div className="flex flex-col">
         <span className="font-medium">Temperature</span>
         <span className="text-black text-3xl font-bold">
-          <NumberFlow value={30} />
+          <NumberFlow value={25} />
           °C
         </span>
       </div>
