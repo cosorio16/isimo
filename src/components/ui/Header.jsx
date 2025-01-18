@@ -1,7 +1,8 @@
+import useStore from "../../store/store";
 import Home from "../../icons/Home";
 import Device from "../../icons/Device";
 import Meter from "../../icons/Meter";
-import useStore from "../../store/store";
+import Bell from "../../icons/Bell";
 
 function Header() {
   const { toggleView } = useStore();
@@ -33,6 +34,13 @@ function Header() {
         >
           <Meter sizes={20} />
           Mediciones
+        </button>
+        <button
+          onClick={() => toggleView(3)}
+          className="flex items-center gap-2 hover:text-[#93D50A] transition-all"
+        >
+          <Bell sizes={20} />
+          Alertas
         </button>
       </nav>
       <div className="flex items-center justify-center justify-items-center">

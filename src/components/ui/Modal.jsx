@@ -1,5 +1,6 @@
 import useStore from "../../store/store";
 import Close from "../../icons/Close";
+import DataCard from "../data/Datacard";
 
 function Modal() {
   const { modal, toggleModal } = useStore();
@@ -11,8 +12,10 @@ function Modal() {
           : "bg-transparent pointer-events-none"
       } transition-all duration-300`}
     >
+
+
       <div
-        className={`w-full h-full bg-white flex flex-col p-5 rounded-t-sm ${
+        className={`w-full h-full bg-white flex flex-col gap-5 p-5 rounded-t-sm ${
           modal ? "translate-y-0" : "translate-y-full"
         } transition-all duration-500`}
       >
@@ -24,7 +27,25 @@ function Modal() {
         >
           <Close sizes={25} />
         </button>
-        <div>Carlos</div>
+        <div className="flex flex-col gap-5">
+          <div className="grid grid-cols-4 gap-4">
+            {
+              //onOff
+              //tiempo de funcionamiento
+              //temperatura del aire
+              //temperatura del recinto
+              //tiempo de funcionamiento
+              //Energia Fase 1, 2, 3
+              //Potencia, Corriente, Frecuencia
+              //Energia Total
+              //Factor de potencia
+            }
+            <DataCard />
+            <DataCard />
+            <DataCard />
+            <DataCard />
+          </div>
+        </div>
       </div>
     </div>
   );

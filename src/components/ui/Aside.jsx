@@ -2,11 +2,42 @@ import useStore from "../../store/store";
 import Select from "./Select";
 import Close from "../../icons/Close";
 import Add from "../../icons/Add";
-import Time from "./Time";
-import ScheduleCard from "../ScheduleCard";
+import Date from "./Date";
 
 function Aside() {
   const { aside, toggleAside } = useStore();
+
+  let optionsDate = ["Encender", "Apagar", "Set Temperatura"];
+
+  let days = [
+    "Lunes",
+    "Martes",
+    "Miercoles",
+    "Jueves",
+    "Viernes",
+    "Sabado",
+    "Domingo",
+  ];
+
+  let daysMonth = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+    22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
+  ];
+
+  let moths = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
+  ];
 
   return (
     <div
@@ -14,16 +45,13 @@ function Aside() {
         aside ? "z-10 bg-black bg-opacity-70" : "pointer-events-none"
       }`}
     >
-      <div
-        className="grow h-full p-10"
-      >
+      <div className="grow h-full p-10">
         <div
           className={`w-full h-full bg-white rounded-sm flex items-center justify-center ${
             aside ? "scale-100" : "scale-0"
           } transition-all duration-500`}
         >
-          {/* <p>No hay tareas programadas.</p> */}
-          <ScheduleCard/>
+          <p>No hay tareas programadas.</p>
         </div>
       </div>
 
@@ -48,17 +76,31 @@ function Aside() {
           <input
             type="text"
             placeholder="Nombre del evento"
-            className="relative border w-full px-5 py-2 rounded flex items-center justify-between cursor-pointer ring-[#513685] ring-offset-1 hover:ring-2 focus:outline-none focus-within:ring-2 transition-all"
+            className="relative border w-full px-5 py-2 rounded flex items-center justify-between cursor-pointer ring-[#513685] ring-offset-1 hover:ring-2 focus:outline-none focus:ring-2 transition-all"
           />
-          <Time />
-          <Select name={"Dias de la semana"} />
-          <Select name={"Dias del Mes"} />
-          <Select name={"Meses"} />
-          <Select name={"Accion"} />
-          <label htmlFor="" className="flex items-center gap-2 px-1 py-1">
-            <input type="checkbox" name="" id="" className="size-4" />
-            Activo
-          </label>
+          <div className="flex justify-between items-center gap-2 w-full">
+            <input
+              type="time"
+              name=""
+              id=""
+              className="border justify-between flex items-center w-full py-2 px-5 focus:outline-none hover:ring-2 ring-[#513685] ring-offset-1 focus:ring-2 rounded cursor-pointer transition-all"
+            />
+            <Select name={"Accion"} options={optionsDate} />
+          </div>
+          <Date name={"Dias de la Semana"} options={days} gridCols={4} />
+          <Date name={"Dias del mes"} options={daysMonth} gridCols={7} />
+          <Date name={"Meses"} options={moths} gridCols={4} />
+
+          <div className="grid grid-cols-2">
+            <label htmlFor="" className="flex items-center gap-2 px-1 py-1">
+              <input type="checkbox" name="" id="" className="size-4" />
+              Activo
+            </label>
+            <label htmlFor="" className="flex items-center gap-2 px-1 py-1">
+              <input type="checkbox" name="" id="" className="size-4" />
+              Repetir Cada Año
+            </label>
+          </div>
         </div>
         <button className="border py-3 rounded-lg font-medium text-white bg-[#513685] flex items-center justify-center gap-2 opacity-50">
           <Add sizes={20} />

@@ -10,8 +10,11 @@ function App() {
       {view == 0 && <Home />}
       {view == 1 && <Control />}
       {view == 2 && <Meditions />}
+      {view == 3 && <Meditions />}
     </>
   );
 }
 
 export default App;
+
+
