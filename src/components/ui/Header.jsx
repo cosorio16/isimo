@@ -11,7 +11,7 @@ function Header() {
     <header className="flex items-center justify-between border-b bg-opacity-80 px-16 lg:px-24 2xl:px-32 h-24 text-[#513685] bg-white fixed w-screen left-0 top-0 backdrop-blur z-10">
       <nav className="flex font-medium items-center gap-10 text-lg">
         <img
-          src="/logo.png"
+          src="/scada/resources/img/logo.png"
           alt=""
           className="size-16 rounded-full aspect-square object-contain bg-[#513685] p-2"
         />

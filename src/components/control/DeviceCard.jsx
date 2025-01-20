@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import Toogle from "../ui/Toogle";
 import useStore from "../../store/store";
 import Schedule from "../../icons/Schedule";
@@ -10,8 +9,8 @@ import Ice from "../../icons/Ice";
 import NumberFlow from "@number-flow/react";
 import Arrow from "../../icons/Arrow";
 
-function DeviceCard({ name, icon, isAir, direction }) {
-  const { toggleAside, toggleModal } = useStore();
+function DeviceCard({ name, icon, isAir, direction, status }) {
+  const { toggleAside, toggleModal , setScheduler} = useStore();
 
   const [range, setRange] = useState(16);
   const [active, setActive] = useState(false);
@@ -27,19 +26,17 @@ function DeviceCard({ name, icon, isAir, direction }) {
     range > 16 && setRange((range) => range - 1);
   };
 
-  // useEffect(() => {
-  //   const createCallBack = () => (e) => {
-  //     setActive(e);
-  //     console.log(e)
-  //   };
+  const callback = (e) => {
+    setActive(e);
+  };
 
-  //   const callback = createCallBack();
-  //   localbus.listen("object", `${direction}`, callback);
+  useEffect(() => {
+    localbus.listen("object", `${status}`, callback);
 
-  //   return () => {
-  //     localbus.unlisten("object", address, callback);
-  //   };
-  // }, []);
+    return () => {
+      localbus.unlisten("object", `${status}`, callback);
+    };
+  }, []);
 
   return (
     <div className="flex min-w-56 w-full max-w-full border flex-col gap-3 px-4 py-6 rounded-md shadow hover:shadow-lg cursor-pointer bg-white h-fit text-[#606060] transition-all duration-300">
@@ -50,8 +47,11 @@ function DeviceCard({ name, icon, isAir, direction }) {
               <Icon sizes={30} />
             </span>
           )}
-          <h1 className="text-lg 2xl:text-xl text-start text-ellipsis truncate">
+          <h1 className="text-lg 2xl:text-xl text-start text-ellipsis truncate flex flex-col">
             {name}
+            <span className="text-sm 2xl:text-base">
+              status
+            </span>
           </h1>
         </div>
         <Toogle active={active} setActive={setActive} direction={direction} />
@@ -94,7 +94,7 @@ function DeviceCard({ name, icon, isAir, direction }) {
       )}
       <div className="flex justify-between items-center">
         <button
-          className="flex items-center gap-2 p-2 rounded-full hover:bg-[#513685] hover:bg-opacity-15 transition-all duration-200 text-sm font-medium"
+          className="flex items-center gap-2 p-2 rounded-full hover:bg-[#513685] hover:bg-opacity-15 transition-all duration-200 font-medium"
           onClick={(e) => {
             e.stopPropagation();
             toggleModal(true);
@@ -106,10 +106,11 @@ function DeviceCard({ name, icon, isAir, direction }) {
           Ver gráfica
         </button>
         <button
-          className="flex items-center gap-2 p-2 rounded-full hover:bg-[#93D50A] hover:bg-opacity-15 transition-all duration-200 text-sm font-medium"
+          className="flex items-center gap-2 p-2 rounded-full hover:bg-[#93D50A] hover:bg-opacity-15 transition-all duration-200 font-medium"
           onClick={(e) => {
             e.stopPropagation();
             toggleAside(true);
+            setScheduler(localbus.encodega(`${direction}`))
           }}
         >
           <span className="text-[#93D50A]">

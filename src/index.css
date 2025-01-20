@@ -1,4 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap");
+@font-face {
+  font-family: "Schibsted Grotesk";
+  src: url("/scada/resources/fonts/schibsted_grotesk_regular.ttf");
+}
 
 @tailwind base;
 @tailwind components;

@@ -1,12 +1,16 @@
 import useStore from "../../store/store";
+import ScheduleCard from "../../components/ScheduleCard";
+import { useEffect, useState } from "react";
+import { getAllSchedulers, getEvents } from "../../utils/utils";
 import Select from "./Select";
 import Close from "../../icons/Close";
 import Add from "../../icons/Add";
 import Date from "./Date";
-import ScheduleCard from "../../components/ScheduleCard";
 
 function Aside() {
-  const { aside, toggleAside } = useStore();
+  const { aside, toggleAside, scheduler } = useStore();
+  const [schedulers, setSchedulers] = useState([]);
+  const [events, setEvents] = useState([]);
 
   let optionsDate = ["Encender", "Apagar", "Set Temperatura"];
 
@@ -40,7 +44,23 @@ function Aside() {
     "Diciembre",
   ];
 
-  let tasks = [1];
+  useEffect(() => {
+    const fetchSchedulers = async () => {
+      try {
+        const data = await getAllSchedulers();
+        setSchedulers(data.schedulers);
+      } catch (error) {
+        console.error(`Error en el fetch: ${error}`);
+      }
+    };
+
+    fetchSchedulers();
+  }, []);
+
+  useEffect(() => {
+    let id = schedulers.filter((item) => item.object == scheduler)[0]?.id;
+    console.log(getEvents(id));
+  }, [scheduler]);
 
   return (
     <div
@@ -50,14 +70,21 @@ function Aside() {
     >
       <div className="grow h-full p-5">
         <div
-          className={`w-full h-full bg-white rounded-sm grid grid-cols-2 2xl:grid-cols-3 gap-5 p-5 overflow-y-scroll  ${
-            tasks.length == 0 && "flex justify-center items-center"
+          className={`w-full h-full bg-white rounded-sm  gap-5 p-5 overflow-y-scroll  ${
+            events.length == 0
+              ? "flex justify-center items-center"
+              : "grid grid-cols-2 2xl:grid-cols-3"
           } ${aside ? "scale-100" : "scale-0"} transition-all duration-500`}
         >
-          {tasks.length == 0 && <p>No hay tareas programadas.</p>}
-          {[...Array(10)].map((c, i) => (
-            <ScheduleCard key={i} />
-          ))}
+          {events.length == 0 ? (
+            <p>No hay tareas programadas.</p>
+          ) : (
+            <>
+              {events.map((c, i) => (
+                <ScheduleCard key={i} />
+              ))}
+            </>
+          )}
         </div>
       </div>
 

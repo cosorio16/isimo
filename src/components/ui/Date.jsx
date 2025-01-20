@@ -100,7 +100,7 @@ function Date({ name, options, gridCols }) {
 
             <button
               onClick={() => setShow(false)}
-              className="border py-2 px-5 rounded bg-[#513685] text-white font-medium active:scale-95 transition-all duration-300"
+              className="border py-2 px-5 rounded bg-[#93D50A] text-white font-medium active:scale-95 transition-all duration-300"
             >
               Guardar
             </button>

@@ -6,7 +6,7 @@ function Toogle({ active, setActive, direction }) {
       onClick={(e) => {
         e.stopPropagation();
         setActive(!active);
-        // localbus.write(`${direction}`, !active)
+        localbus.write(`${direction}`, !active)
       }}
     >
       <div
