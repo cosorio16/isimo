@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Toogle from "../ui/Toogle";
 import useStore from "../../store/store";
@@ -10,10 +10,11 @@ import Ice from "../../icons/Ice";
 import NumberFlow from "@number-flow/react";
 import Arrow from "../../icons/Arrow";
 
-function DeviceCard({ name, icon, isAir }) {
+function DeviceCard({ name, icon, isAir, direction }) {
   const { toggleAside, toggleModal } = useStore();
 
   const [range, setRange] = useState(16);
+  const [active, setActive] = useState(false);
 
   const icons = [Lamp, Air, Ice];
   const Icon = icons[icon];
@@ -26,12 +27,24 @@ function DeviceCard({ name, icon, isAir }) {
     range > 16 && setRange((range) => range - 1);
   };
 
-  console.log(range);
+  // useEffect(() => {
+  //   const createCallBack = () => (e) => {
+  //     setActive(e);
+  //     console.log(e)
+  //   };
+
+  //   const callback = createCallBack();
+  //   localbus.listen("object", `${direction}`, callback);
+
+  //   return () => {
+  //     localbus.unlisten("object", address, callback);
+  //   };
+  // }, []);
 
   return (
     <div className="flex min-w-56 w-full max-w-full border flex-col gap-3 px-4 py-6 rounded-md shadow hover:shadow-lg cursor-pointer bg-white h-fit text-[#606060] transition-all duration-300">
-      <div className="flex items-center justify-between border-b pb-5">
-        <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between border-b gap-2 pb-5">
+        <div className="flex items-center gap-2">
           {Icon && (
             <span className="border aspect-square p-2 rounded-full text-[#513685] bg-lime-100">
               <Icon sizes={30} />
@@ -41,7 +54,7 @@ function DeviceCard({ name, icon, isAir }) {
             {name}
           </h1>
         </div>
-        <Toogle />
+        <Toogle active={active} setActive={setActive} direction={direction} />
       </div>
 
       {isAir && (

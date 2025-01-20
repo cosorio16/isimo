@@ -22,7 +22,7 @@ function Control() {
   return (
     <>
       <Header />
-      <main className="flex flex-col px-32 py-10 pt-32 gap-10">
+      <main className="flex flex-col px-16 lg:px-24 2xl:px-32 py-10 pt-32 gap-10">
         <section className="border p-5 flex flex-col gap-10 rounded-xl bg-slate-50">
           <h1 className="border-b py-3 px-1 text-3xl text-[#513685] font-medium">
             Luces
@@ -33,7 +33,7 @@ function Control() {
           >
             {tapes.map((tape) => (
               <li className="cassette " data-label={tape} key={tape}>
-                <DeviceCard name={tape} icon={0} />
+                <DeviceCard  name={tape} icon={0} />
               </li>
             ))}
           </ul>
@@ -44,7 +44,7 @@ function Control() {
           </h1>
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
             {airsNames.map((n, i) => (
-              <DeviceCard key={i} name={n} icon={1} isAir />
+              <DeviceCard  key={i} name={n} icon={1} isAir />
             ))}
           </div>
         </section>
@@ -53,7 +53,7 @@ function Control() {
             Nevera
           </h1>
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
-            <DeviceCard name={"Nevera"} icon={2} />
+            <DeviceCard direction={"0/0/1"} name={"Nevera"} icon={2} />
           </div>
         </section>
       </main>

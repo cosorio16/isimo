@@ -1,13 +1,12 @@
-import { useState } from "react";
+function Toogle({ active, setActive, direction }) {
 
-function Toogle() {
-  const [active, setActive] = useState(false);
 
   return (
     <div
       onClick={(e) => {
         e.stopPropagation();
         setActive(!active);
+        // localbus.write(`${direction}`, !active)
       }}
     >
       <div

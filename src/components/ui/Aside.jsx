@@ -48,14 +48,14 @@ function Aside() {
         aside ? "z-10 bg-black bg-opacity-70" : "pointer-events-none"
       }`}
     >
-      <div className="grow h-full p-10">
+      <div className="grow h-full p-5">
         <div
-          className={`w-full h-full bg-white rounded-sm grid grid-cols-3 gap-5 p-5 overflow-y-scroll  ${
+          className={`w-full h-full bg-white rounded-sm grid grid-cols-2 2xl:grid-cols-3 gap-5 p-5 overflow-y-scroll  ${
             tasks.length == 0 && "flex justify-center items-center"
           } ${aside ? "scale-100" : "scale-0"} transition-all duration-500`}
         >
           {tasks.length == 0 && <p>No hay tareas programadas.</p>}
-          {[...Array(20)].map((c, i) => (
+          {[...Array(10)].map((c, i) => (
             <ScheduleCard key={i} />
           ))}
         </div>
