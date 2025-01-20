@@ -58,8 +58,17 @@ function Aside() {
   }, []);
 
   useEffect(() => {
-    let id = schedulers.filter((item) => item.object == scheduler)[0]?.id;
-    console.log(getEvents(id));
+    const fetchEvents = async () => {
+      let id = schedulers.filter((item) => item.object == scheduler)[0]?.id;
+      try {
+        const data = await getEvents(id);
+        setEvents(data);
+      } catch (error) {
+        console.error(`Error en el fetch events: ${error}`);
+      }
+    };
+
+    fetchEvents();
   }, [scheduler]);
 
   return (

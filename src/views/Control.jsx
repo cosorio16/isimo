@@ -30,7 +30,10 @@ function Control() {
     "Aire Acondicionado 3",
   ];
 
+
+
   const airsObjects = ["3/0/24", "3/1/24", "3/2/24"];
+  const airRangesObjects = ["3/0/25", "3/1/25", "3/2/25"];
 
   return (
     <>
@@ -65,6 +68,7 @@ function Control() {
                 isAir
                 direction={airsObjects[i]}
                 status={airsObjects[i]}
+                rangeDirection={airRangesObjects[i]}
               />
             ))}
           </div>

@@ -9,8 +9,8 @@ import Ice from "../../icons/Ice";
 import NumberFlow from "@number-flow/react";
 import Arrow from "../../icons/Arrow";
 
-function DeviceCard({ name, icon, isAir, direction, status }) {
-  const { toggleAside, toggleModal , setScheduler} = useStore();
+function DeviceCard({ name, icon, isAir, direction, status, rangeDirection }) {
+  const { toggleAside, toggleModal, setScheduler } = useStore();
 
   const [range, setRange] = useState(16);
   const [active, setActive] = useState(false);
@@ -38,6 +38,10 @@ function DeviceCard({ name, icon, isAir, direction, status }) {
     };
   }, []);
 
+  useEffect(() => {
+    localbus.write(`${rangeDirection}`, range)
+  }, [range])
+
   return (
     <div className="flex min-w-56 w-full max-w-full border flex-col gap-3 px-4 py-6 rounded-md shadow hover:shadow-lg cursor-pointer bg-white h-fit text-[#606060] transition-all duration-300">
       <div className="flex items-center justify-between border-b gap-2 pb-5">
@@ -49,9 +53,7 @@ function DeviceCard({ name, icon, isAir, direction, status }) {
           )}
           <h1 className="text-lg 2xl:text-xl text-start text-ellipsis truncate flex flex-col">
             {name}
-            <span className="text-sm 2xl:text-base">
-              status
-            </span>
+            <span className="text-sm 2xl:text-base">status</span>
           </h1>
         </div>
         <Toogle active={active} setActive={setActive} direction={direction} />
@@ -83,7 +85,9 @@ function DeviceCard({ name, icon, isAir, direction, status }) {
             min={16}
             max={32}
             value={range}
-            // onMouseUp={(e) => setRange(Number(e.target.value))}
+            onMouseUp={(e) => {
+              localbus.write(`${rangeDirection}`, Number(e.target.value));
+            }}
             onChange={(e) => setRange(Number(e.target.value))}
             type="range"
             name=""
@@ -110,7 +114,7 @@ function DeviceCard({ name, icon, isAir, direction, status }) {
           onClick={(e) => {
             e.stopPropagation();
             toggleAside(true);
-            setScheduler(localbus.encodega(`${direction}`))
+            setScheduler(localbus.encodega(`${direction}`));
           }}
         >
           <span className="text-[#93D50A]">
