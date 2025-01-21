@@ -4,7 +4,15 @@ import { Doughnut } from "react-chartjs-2";
 function Pie() {
   return (
     <Doughnut
-      options={{ backgroundColor: ["#9f88f1", "#906be9", "#824fdc"] }}
+      options={{
+        backgroundColor: [
+          "#FF6900",
+          "#513685",
+          "#93D50A",
+          "#E70081",
+          "#FFBB3A",
+        ],
+      }}
       data={{
         labels: ["A", "B", "C"],
         datasets: [

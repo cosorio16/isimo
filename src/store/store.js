@@ -9,7 +9,8 @@ const useStore = create((set) => ({
   toggleModal: (bool) => set({ modal: bool }),
   toggleAside: (bool) => set({ aside: bool }),
   setScheduler: (id) => set({ scheduler: id }),
-  fn: () => set((state) => ({ d: state.d })),
 }));
 
 export default useStore;
+
+// fn: () => set((state) => ({ d: state.d })),

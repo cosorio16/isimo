@@ -9,38 +9,52 @@ import Ice from "../../icons/Ice";
 import NumberFlow from "@number-flow/react";
 import Arrow from "../../icons/Arrow";
 
-function DeviceCard({ name, icon, isAir, direction, status, rangeDirection }) {
+function DeviceCard({
+  name,
+  icon,
+  isAir,
+  direction,
+  status,
+  rangeDirection,
+  modeDirection,
+}) {
   const { toggleAside, toggleModal, setScheduler } = useStore();
 
   const [range, setRange] = useState(16);
   const [active, setActive] = useState(false);
+  const [mode, setMode] = useState(false);
 
   const icons = [Lamp, Air, Ice];
   const Icon = icons[icon];
 
   const handleAddRange = () => {
     range < 32 && setRange((range) => range + 1);
+    range < 32 && localbus.write(`${rangeDirection}`, range + 1);
   };
 
   const handleMinusRange = () => {
     range > 16 && setRange((range) => range - 1);
+    range > 16 && localbus.write(`${rangeDirection}`, range - 1);
   };
 
   const callback = (e) => {
     setActive(e);
   };
 
-  useEffect(() => {
-    localbus.listen("object", `${status}`, callback);
+  const callbackMode = (e) => {
+    setMode(e);
+  };
 
-    return () => {
-      localbus.unlisten("object", `${status}`, callback);
-    };
-  }, []);
+  // useEffect(() => {
+  //   localbus.listen("object", `${status}`, callback);
+  //   localbus.listen("object", `${modeDirection}`, callbackMode);
 
-  useEffect(() => {
-    localbus.write(`${rangeDirection}`, range)
-  }, [range])
+  //   return () => {
+  //     localbus.unlisten("object", `${status}`, callback);
+  //     localbus.unlisten("object", `${modeDirection}`, callbackMode);
+  //   };
+  // }, []);
+
 
   return (
     <div className="flex min-w-56 w-full max-w-full border flex-col gap-3 px-4 py-6 rounded-md shadow hover:shadow-lg cursor-pointer bg-white h-fit text-[#606060] transition-all duration-300">
@@ -53,7 +67,13 @@ function DeviceCard({ name, icon, isAir, direction, status, rangeDirection }) {
           )}
           <h1 className="text-lg 2xl:text-xl text-start text-ellipsis truncate flex flex-col">
             {name}
-            <span className="text-sm 2xl:text-base">status</span>
+            <span
+              className={`text-sm 2xl:text-base ${
+                mode ? "text-[#93D50A]" : "text-red-500"
+              }`}
+            >
+              {mode ? "Modo Auto" : "Modo OFF/Manual"}
+            </span>
           </h1>
         </div>
         <Toogle active={active} setActive={setActive} direction={direction} />
@@ -85,13 +105,11 @@ function DeviceCard({ name, icon, isAir, direction, status, rangeDirection }) {
             min={16}
             max={32}
             value={range}
-            onMouseUp={(e) => {
-              localbus.write(`${rangeDirection}`, Number(e.target.value));
-            }}
+            // onMouseUp={(e) => {
+            //   localbus.write(`${rangeDirection}`, Number(e.target.value));
+            // }}
             onChange={(e) => setRange(Number(e.target.value))}
             type="range"
-            name=""
-            id=""
             className="w-full"
           />
         </div>

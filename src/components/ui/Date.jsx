@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Arrow from "../../icons/Arrow";
 import Schedule from "../../icons/Schedule";
 
-function Date({ name, options, gridCols }) {
-  const [datesSelected, setDatesSelected] = useState([]);
+function Date({ name, options, gridCols, setSelected }) {
+  const [datesSelected, setDatesSelected] = useState(options);
   const [show, setShow] = useState(false);
 
   const handleAddDate = (date) => {
@@ -24,6 +24,14 @@ function Date({ name, options, gridCols }) {
   const handleRemoveAll = () => {
     setDatesSelected([]);
   };
+
+  useEffect(() => {
+    const transformDates = options
+      .map((option) => (datesSelected.includes(option) ? 1 : 0))
+      .join("");
+
+    setSelected(transformDates);
+  }, [datesSelected]);
 
   return (
     <>
@@ -55,57 +63,59 @@ function Date({ name, options, gridCols }) {
           <Arrow sizes={15} />
         </span>
 
-        {show && (
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="absolute w-full top-full shadow left-0 bg-white min-h-fit2 border z-10 p-2 flex flex-col gap-5 pb-5"
-          >
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                onClick={() => handleAddAllData()}
-                className="border py-2 hover:bg-slate-100 active:scale-95 rounded transition-all"
-              >
-                Todos
-              </button>
-              <button
-                onClick={() => handleRemoveAll()}
-                className="border py-2 hover:bg-slate-100 active:scale-95 rounded transition-all"
-              >
-                Ninguno
-              </button>
-            </div>
-
-            <div
-              className={`grid gap-2 ${gridCols == 4 && "grid-cols-4"} ${
-                gridCols == 7 && "grid-cols-7"
-              }`}
-            >
-              {options &&
-                options.map((d, i) => (
-                  <button
-                    onClick={() => {
-                      handleAddDate(d);
-                    }}
-                    key={i}
-                    className={`border truncate w-full p-1 rounded  ${
-                      datesSelected.includes(d)
-                        ? "bg-[#513685] text-white"
-                        : "hover:bg-slate-200 hover:text-[#606060]"
-                    } transition-all`}
-                  >
-                    {d}
-                  </button>
-                ))}
-            </div>
-
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className={`absolute w-full top-full  left-0  flex flex-col gap-5 pb-5 p-2 ${
+            show
+              ? "translate-y-0 opacity-100 bg-white min-h-fit border z-10 shadow scale-100"
+              : "pointer-events-none -translate-y-10 opacity-0 -z-10 scale-90"
+          } transition-all duration-300`}
+        >
+          <div className="grid grid-cols-2 gap-2">
             <button
-              onClick={() => setShow(false)}
-              className="border py-2 px-5 rounded bg-[#93D50A] text-white font-medium active:scale-95 transition-all duration-300"
+              onClick={() => handleAddAllData()}
+              className="border py-2 hover:bg-slate-100 active:scale-95 rounded transition-all"
             >
-              Guardar
+              Todos
+            </button>
+            <button
+              onClick={() => handleRemoveAll()}
+              className="border py-2 hover:bg-slate-100 active:scale-95 rounded transition-all"
+            >
+              Ninguno
             </button>
           </div>
-        )}
+
+          <div
+            className={`grid gap-2 ${gridCols == 4 && "grid-cols-4"} ${
+              gridCols == 7 && "grid-cols-7"
+            }`}
+          >
+            {options &&
+              options.map((d, i) => (
+                <button
+                  onClick={() => {
+                    handleAddDate(d);
+                  }}
+                  key={i}
+                  className={`border truncate w-full p-1 rounded  ${
+                    datesSelected.includes(d)
+                      ? "bg-[#513685] text-white"
+                      : "hover:bg-slate-200 hover:text-[#606060]"
+                  } transition-all`}
+                >
+                  {d}
+                </button>
+              ))}
+          </div>
+
+          <button
+            onClick={() => setShow(false)}
+            className="border py-2 px-5 rounded bg-white text-[#606060] hover:bg-[#93D50A] hover:text-white font-medium active:scale-95 transition-all duration-300"
+          >
+            Guardar
+          </button>
+        </div>
       </div>
     </>
   );

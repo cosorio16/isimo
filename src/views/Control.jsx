@@ -30,10 +30,11 @@ function Control() {
     "Aire Acondicionado 3",
   ];
 
-
-
   const airsObjects = ["3/0/24", "3/1/24", "3/2/24"];
   const airRangesObjects = ["3/0/25", "3/1/25", "3/2/25"];
+
+  const modeDirectionsLights = ["2/0/1", "2/0/2", "2/0/3", "2/0/5", "2/0/6"];
+  const modeDirectionsAir = ["2/0/7", "2/0/8", "2/0/9"];
 
   return (
     <>
@@ -51,6 +52,7 @@ function Control() {
                 icon={1}
                 direction={lightObjects[i]}
                 status={lightStatus[i]}
+                modeDirection={modeDirectionsLights[i]}
               />
             ))}
           </div>
@@ -69,6 +71,7 @@ function Control() {
                 direction={airsObjects[i]}
                 status={airsObjects[i]}
                 rangeDirection={airRangesObjects[i]}
+                modeDirection={modeDirectionsAir[i]}
               />
             ))}
           </div>
@@ -78,7 +81,13 @@ function Control() {
             Nevera
           </h1>
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
-            <DeviceCard direction={"1/0/4"} name={"Nevera"} icon={2} status={"1/1/4"}/>
+            <DeviceCard
+              direction={"1/0/4"}
+              name={"Nevera"}
+              icon={2}
+              status={"1/1/4"}
+              modeDirection={"2/0/4"}
+            />
           </div>
         </section>
       </main>
