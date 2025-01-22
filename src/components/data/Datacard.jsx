@@ -6,7 +6,7 @@ import NumberFlow from "@number-flow/react";
 
 function Datacard() {
   return (
-    <div className="flex items-center gap-5 border p-4 rounded hover:shadow-md select-none text-[#606060] transition-all duration-300">
+    <div className="bg-white flex items-center gap-5 border p-4 rounded hover:shadow-md select-none text-[#606060] transition-all duration-300">
       <span className="text-[#513685] p-2 rounded bg-[#513685] bg-opacity-20">
         <Temperature sizes={40} />
       </span>

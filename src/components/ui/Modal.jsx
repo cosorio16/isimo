@@ -15,7 +15,7 @@ function Modal() {
       } transition-all duration-300`}
     >
       <div
-        className={`w-full h-full bg-white flex flex-col gap-5 p-5 rounded-t-sm overflow-y-scroll ${
+        className={`w-full h-full bg-[#FCFCFC] flex flex-col gap-5 p-5 rounded-t-sm overflow-y-scroll ${
           modal ? "translate-y-0" : "translate-y-full"
         } transition-all duration-500`}
       >
@@ -46,10 +46,10 @@ function Modal() {
             <DataCard />
           </div>
           <div className="h-[600px] grid grid-cols-3 gap-10">
-            <div className="flex items-center justify-between h-full border w-full col-span-2">
+            <div className="bg-white flex items-center justify-between h-full border w-full col-span-2">
               <BarChart />
             </div>
-            <div className="flex items-center justify-between border">
+            <div className="bg-white flex items-center justify-between border">
               <Pie />
             </div>
           </div>

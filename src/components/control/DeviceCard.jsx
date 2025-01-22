@@ -14,11 +14,12 @@ function DeviceCard({
   icon,
   isAir,
   direction,
-  status,
   rangeDirection,
+  status,
   modeDirection,
 }) {
-  const { toggleAside, toggleModal, setScheduler } = useStore();
+  const { toggleAside, toggleModal, setScheduler, handleName, toggleIsAir } =
+    useStore();
 
   const [range, setRange] = useState(16);
   const [active, setActive] = useState(false);
@@ -54,7 +55,6 @@ function DeviceCard({
   //     localbus.unlisten("object", `${modeDirection}`, callbackMode);
   //   };
   // }, []);
-
 
   return (
     <div className="flex min-w-56 w-full max-w-full border flex-col gap-3 px-4 py-6 rounded-md shadow hover:shadow-lg cursor-pointer bg-white h-fit text-[#606060] transition-all duration-300">
@@ -105,9 +105,9 @@ function DeviceCard({
             min={16}
             max={32}
             value={range}
-            // onMouseUp={(e) => {
-            //   localbus.write(`${rangeDirection}`, Number(e.target.value));
-            // }}
+            onMouseUp={(e) => {
+              localbus.write(`${rangeDirection}`, Number(e.target.value));
+            }}
             onChange={(e) => setRange(Number(e.target.value))}
             type="range"
             className="w-full"
@@ -132,7 +132,9 @@ function DeviceCard({
           onClick={(e) => {
             e.stopPropagation();
             toggleAside(true);
-            setScheduler(localbus.encodega(`${direction}`));
+            // setScheduler(localbus.encodega(`${direction}`));
+            handleName(`${name}`);
+            toggleIsAir(isAir ? isAir : false);
           }}
         >
           <span className="text-[#93D50A]">

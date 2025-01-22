@@ -10,12 +10,12 @@ function Toogle({ active, setActive, direction }) {
       <div
         className={`w-14 border rounded-full h-7 p-1 flex items-center ${
           active ? "bg-[#93D50A]" : "bg-[#E5E7EB]"
-        } transition-all`}
+        } transition-all duration-100`}
       >
         <div
           className={`bg-white rounded-full size-5 origin-left ${
             active ? "translate-x-6" : "translate-x-0"
-          } transition-all`}
+          } transition-all duration-300`}
         ></div>
       </div>
     </div>

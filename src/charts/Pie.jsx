@@ -1,9 +1,9 @@
 import { Chart as ChartJS } from "chart.js/auto";
-import { Doughnut } from "react-chartjs-2";
+import { Pie as PieChart } from "react-chartjs-2";
 
 function Pie() {
   return (
-    <Doughnut
+    <PieChart
       options={{
         backgroundColor: [
           "#FF6900",
@@ -18,7 +18,7 @@ function Pie() {
         datasets: [
           {
             label: "A",
-            data: [20, 20, 39],
+            data: [20, 20, 40],
           },
         ],
       }}

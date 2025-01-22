@@ -39,7 +39,7 @@ function Control() {
   return (
     <>
       <Header />
-      <main className="flex flex-col px-16 lg:px-24 2xl:px-32 py-10 pt-32 gap-10">
+      <main className="flex flex-col px-16 lg:px-24 2xl:px-32 py-10 pt-32 gap-10 bg-[#FCFCFC]">
         <section className="border p-5 flex flex-col gap-10 rounded-xl bg-slate-50">
           <h1 className="border-b py-3 px-1 text-3xl text-[#513685] font-medium">
             Luces

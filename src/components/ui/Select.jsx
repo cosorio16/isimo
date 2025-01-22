@@ -1,9 +1,8 @@
 import { useState } from "react";
 import Arrow from "../../icons/Arrow";
 
-function Select({ name, options }) {
+function Select({ name, options, setOptionSelected, optionSelected }) {
   const [show, setShow] = useState(false);
-  const [optionSelected, setOptionSelected] = useState(null);
 
   return (
     <div
@@ -19,7 +18,9 @@ function Select({ name, options }) {
       </span>
       <div
         className={`absolute w-full top-full left-0 bg-white z-10 flex flex-col min-h-fit ${
-          show ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-5 opacity-0"
+          show
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none -translate-y-5 opacity-0"
         } transition-all duration-300`}
       >
         {options &&

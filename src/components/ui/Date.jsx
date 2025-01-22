@@ -67,8 +67,8 @@ function Date({ name, options, gridCols, setSelected }) {
           onClick={(e) => e.stopPropagation()}
           className={`absolute w-full top-full  left-0  flex flex-col gap-5 pb-5 p-2 ${
             show
-              ? "translate-y-0 opacity-100 bg-white min-h-fit border z-10 shadow scale-100"
-              : "pointer-events-none -translate-y-10 opacity-0 -z-10 scale-90"
+              ? "translate-y-0 opacity-100 bg-white min-h-fit border z-10 shadow"
+              : "pointer-events-none -translate-y-10 opacity-0 -z-10"
           } transition-all duration-300`}
         >
           <div className="grid grid-cols-2 gap-2">
