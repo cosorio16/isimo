@@ -14,8 +14,65 @@ import Ice from "../../icons/Ice";
 
 function Aside() {
   const { aside, toggleAside, scheduler, nameDevice, isAirDevice } = useStore();
+
   const [schedulers, setSchedulers] = useState([]);
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState([
+    {
+      holidays: "",
+      active: 1,
+      offset_min: 0,
+      offset_hour: 0,
+      months: "111111111111",
+      year: 0,
+      daysofweek: "1111111",
+      start_min: 34,
+      start_hour: 15,
+      dayweeknrs: "111111",
+      daysofmonth: "1111111111111111111111111111000",
+      value: "1",
+      type: "",
+      id: 63,
+      name: "Encender",
+      scheduler: 1,
+    },
+    {
+      holidays: "",
+      active: 1,
+      offset_min: 0,
+      offset_hour: 0,
+      months: "111111111111",
+      year: 0,
+      daysofweek: "1111111",
+      start_min: 37,
+      start_hour: 15,
+      dayweeknrs: "111111",
+      daysofmonth: "1111111111111111111111111111111",
+      value: "0",
+      type: "",
+      id: 64,
+      name: "Apagar",
+      scheduler: 1,
+    },
+    {
+      holidays: "",
+      active: 1,
+      offset_min: 0,
+      offset_hour: 0,
+      months: "111111111111",
+      year: 0,
+      daysofweek: "1111111",
+      start_min: 41,
+      start_hour: 15,
+      dayweeknrs: "111111",
+      daysofmonth: "0000000000000000000000000000000",
+      value: "1",
+      type: "",
+      id: 65,
+      name: "Encender",
+      scheduler: 1,
+    },
+  ]);
+
   const [nameEvent, setNameEvent] = useState("");
   const [timeEvent, setTimeEvent] = useState("");
   const [monthsEvent, setMonthsEvent] = useState([]);
@@ -25,6 +82,7 @@ function Aside() {
   const [eventValue, setEventValue] = useState(16);
   const [eventOptions, setEventOptions] = useState([]);
   const [eventActive, setEventActive] = useState(true);
+
   const [schedulerId, setSchedulersId] = useState(scheduler[0]);
 
   const fetchEvents = async () => {
@@ -158,6 +216,9 @@ function Aside() {
                 name={event.name}
                 value={event.value}
                 schedulerTarget={event.scheduler}
+                daysOfMonth={event.daysofmonth}
+                daysOfWeek={event.daysofweek}
+                months={event.months}
                 onDelete={() => fetchEvents()}
               />
             ))
@@ -168,7 +229,7 @@ function Aside() {
       </div>
 
       <div
-        className={`w-[450px] border h-full bg-white px-10 py-12 flex flex-col gap-x-5 gap-y-2 overflow-y-scroll ${
+        className={`min-w-[450px] max-w-[450px] border h-full bg-white px-10 py-12 flex flex-col gap-x-5 gap-y-2 overflow-y-scroll ${
           aside ? "translate-x-0" : "translate-x-full"
         } transition-all duration-500`}
       >
