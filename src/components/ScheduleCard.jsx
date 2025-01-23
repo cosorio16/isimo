@@ -11,11 +11,10 @@ function ScheduleCard({
   time,
   id,
   onDelete,
-  schedulerTarget,
   value,
+  months,
   daysOfMonth,
   daysOfWeek,
-  months,
 }) {
   const handleDeleteEvent = async () => {
     try {
@@ -46,14 +45,6 @@ function ScheduleCard({
         )}
       </div>
       <div className="flex items-center gap-2">
-        <button
-          onClick={() =>
-            console.log(schedulerTarget, id, daysOfMonth, daysOfWeek, months)
-          }
-          className="aspect-square rounded p-2 hover:bg-[#513685] hover:text-white transition-all duration-300"
-        >
-          <Edit sizes={23} />
-        </button>
         <button
           onClick={() => {
             handleDeleteEvent();

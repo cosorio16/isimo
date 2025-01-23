@@ -16,62 +16,7 @@ function Aside() {
   const { aside, toggleAside, scheduler, nameDevice, isAirDevice } = useStore();
 
   const [schedulers, setSchedulers] = useState([]);
-  const [events, setEvents] = useState([
-    {
-      holidays: "",
-      active: 1,
-      offset_min: 0,
-      offset_hour: 0,
-      months: "111111111111",
-      year: 0,
-      daysofweek: "1111111",
-      start_min: 34,
-      start_hour: 15,
-      dayweeknrs: "111111",
-      daysofmonth: "1111111111111111111111111111000",
-      value: "1",
-      type: "",
-      id: 63,
-      name: "Encender",
-      scheduler: 1,
-    },
-    {
-      holidays: "",
-      active: 1,
-      offset_min: 0,
-      offset_hour: 0,
-      months: "111111111111",
-      year: 0,
-      daysofweek: "1111111",
-      start_min: 37,
-      start_hour: 15,
-      dayweeknrs: "111111",
-      daysofmonth: "1111111111111111111111111111111",
-      value: "0",
-      type: "",
-      id: 64,
-      name: "Apagar",
-      scheduler: 1,
-    },
-    {
-      holidays: "",
-      active: 1,
-      offset_min: 0,
-      offset_hour: 0,
-      months: "111111111111",
-      year: 0,
-      daysofweek: "1111111",
-      start_min: 41,
-      start_hour: 15,
-      dayweeknrs: "111111",
-      daysofmonth: "0000000000000000000000000000000",
-      value: "1",
-      type: "",
-      id: 65,
-      name: "Encender",
-      scheduler: 1,
-    },
-  ]);
+  const [events, setEvents] = useState([]);
 
   const [nameEvent, setNameEvent] = useState("");
   const [timeEvent, setTimeEvent] = useState("");
@@ -83,7 +28,7 @@ function Aside() {
   const [eventOptions, setEventOptions] = useState([]);
   const [eventActive, setEventActive] = useState(true);
 
-  const [schedulerId, setSchedulersId] = useState(scheduler[0]);
+  const [schedulerId, setSchedulerId] = useState(scheduler[0]);
 
   const fetchEvents = async () => {
     let ids = schedulers
@@ -142,9 +87,15 @@ function Aside() {
       .filter((item) => scheduler.includes(item.object))
       .map((e) => e.id);
 
-    setSchedulersId(eventAction == "Set Temperatura" ? ids[1] : ids[0]);
+    setSchedulerId(eventAction == "Set Temperatura" ? ids[1] : ids[0]);
     setEventValue(optionsMap[eventAction]);
   }, [eventAction]);
+
+  const handleResetAll = () => {
+    setNameEvent("");
+    setTimeEvent();
+    setEventAction(null);
+  };
 
   const handleSubmitData = useCallback(async () => {
     const body = {
@@ -185,12 +136,6 @@ function Aside() {
     schedulerId,
   ]);
 
-  const handleResetAll = () => {
-    setNameEvent(null);
-    setTimeEvent(null);
-    setEventAction(null);
-  };
-
   return (
     <div
       className={`inset-0 fixed  text-[#606060] flex items-center select-none ${
@@ -215,7 +160,6 @@ function Aside() {
                 }`}
                 name={event.name}
                 value={event.value}
-                schedulerTarget={event.scheduler}
                 daysOfMonth={event.daysofmonth}
                 daysOfWeek={event.daysofweek}
                 months={event.months}
@@ -258,6 +202,7 @@ function Aside() {
             <div className="flex items-start flex-col gap-3">
               <input
                 type="text"
+                value={nameEvent}
                 onChange={(e) => setNameEvent(e.target.value)}
                 placeholder="Nombre del evento"
                 className="relative border w-full px-5 py-2 rounded flex items-center justify-between cursor-pointer ring-[#513685] ring-offset-1 hover:ring-2 focus:outline-none focus:ring-2 transition-all"
@@ -339,6 +284,7 @@ function Aside() {
               onClick={() => {
                 handleSubmitData();
                 fetchEvents();
+                handleResetAll();
               }}
               className={`border py-3 rounded-lg font-medium flex items-center justify-center gap-2 text-white bg-[#513685]  ${
                 nameEvent && timeEvent && eventAction
