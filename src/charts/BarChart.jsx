@@ -19,7 +19,7 @@ function BarChart() {
             hoverBorderWidth: 4,
           },
           {
-            label: "Circuito 3",
+            label: "Circuito 2",
             data: [22, 32, 32, 44],
             backgroundColor: "rgba(147,213,10,0.2)",
             borderColor: "rgba(147,213,10,1)",
@@ -27,7 +27,7 @@ function BarChart() {
             hoverBorderWidth: 4,
           },
           {
-            label: "Circuito 2",
+            label: "Circuito 3",
             data: [10, 23, 15, 33],
             backgroundColor: "rgba(255,185,0,0.2)",
             borderColor: "rgba(255,185,0,1)",

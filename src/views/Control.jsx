@@ -2,7 +2,7 @@ import Header from "../components/ui/Header";
 import DeviceCard from "../components/control/DeviceCard";
 import Aside from "../components/ui/Aside";
 import Modal from "../components/ui/Modal";
-import { useDragAndDrop } from "@formkit/drag-and-drop/react";
+// import { useDragAndDrop } from "@formkit/drag-and-drop/react";
 
 function Control() {
   // const [parent, tapes] = useDragAndDrop([

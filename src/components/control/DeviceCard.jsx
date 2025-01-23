@@ -46,18 +46,37 @@ function DeviceCard({
     setMode(e);
   };
 
+  const callbackRange = (e) => {
+    setRange(e);
+  };
+
   // useEffect(() => {
   //   localbus.listen("object", `${status}`, callback);
   //   localbus.listen("object", `${modeDirection}`, callbackMode);
+  //   localbus.listen("object", `${rangeDirection}`, callbackRange);
 
   //   return () => {
   //     localbus.unlisten("object", `${status}`, callback);
   //     localbus.unlisten("object", `${modeDirection}`, callbackMode);
+  //     localbus.unlisten("object", `${rangeDirection}`, callbackRange);
   //   };
   // }, []);
 
+  const eventsDirections = [direction, rangeDirection];
+
+  const handleSetScheduler = () => {
+    let objectsId = [];
+    eventsDirections.map((d) => {
+      let id = localbus.encodega(`${d}`);
+      objectsId.push(id);
+    });
+
+    setScheduler(objectsId);
+  };
+
+
   return (
-    <div className="flex min-w-56 w-full max-w-full border flex-col gap-3 px-4 py-6 rounded-md shadow hover:shadow-lg cursor-pointer bg-white h-fit text-[#606060] transition-all duration-300">
+    <div className="flex min-w-56 w-full max-w-full border flex-col gap-5 px-4 py-6 rounded-md shadow hover:shadow-lg cursor-pointer bg-white h-fit text-[#606060] transition-all duration-300">
       <div className="flex items-center justify-between border-b gap-2 pb-5">
         <div className="flex items-center gap-2">
           {Icon && (
@@ -85,18 +104,18 @@ function DeviceCard({
             <div className="flex items-center gap-2">
               <button
                 onClick={() => handleAddRange()}
-                className="rounded border bg-slate-50 text-[#513685] p-2 rotate-[90deg] "
+                className="border bg-[#513685] text-white p-2 rounded-full rotate-[90deg] active:scale-90 transition-all duration-300 shadow-md"
               >
                 <Arrow sizes={25} />
               </button>
               <button
                 onClick={() => handleMinusRange()}
-                className="rounded border bg-slate-50 text-[#513685] p-2 rotate-[270deg] "
+                className="border bg-[#513685] text-white p-2 rounded-full rotate-[270deg] active:scale-90 transition-all duration-300 shadow-md"
               >
                 <Arrow sizes={25} />
               </button>
             </div>
-            <span className="flex items-center gap-2 border justify-center px-5 py-2 font-medium text-white rounded bg-[#513685] bg-opacity-90">
+            <span className="flex items-center gap-2 border justify-between px-5 py-2 font-medium text-white rounded bg-[#513685] bg-opacity-90 w-24">
               <Ice sizes={20} />
               <NumberFlow value={range} />
             </span>
@@ -132,7 +151,7 @@ function DeviceCard({
           onClick={(e) => {
             e.stopPropagation();
             toggleAside(true);
-            // setScheduler(localbus.encodega(`${direction}`));
+            handleSetScheduler();
             handleName(`${name}`);
             toggleIsAir(isAir ? isAir : false);
           }}
