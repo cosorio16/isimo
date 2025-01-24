@@ -93,8 +93,8 @@ function Aside() {
 
   const handleResetAll = () => {
     setNameEvent("");
-    setTimeEvent();
-    setEventAction(null);
+    setTimeEvent("");
+    setEventAction("");
   };
 
   const handleSubmitData = useCallback(async () => {
@@ -173,7 +173,7 @@ function Aside() {
       </div>
 
       <div
-        className={`min-w-[450px] max-w-[450px] border h-full bg-white px-10 py-12 flex flex-col gap-x-5 gap-y-2 overflow-y-scroll ${
+        className={`min-w-[450px] max-w-[450px] h-full bg-white px-10 py-12 flex flex-col gap-x-5 gap-y-2 overflow-y-scroll ${
           aside ? "translate-x-0" : "translate-x-full"
         } transition-all duration-500`}
       >
@@ -210,6 +210,7 @@ function Aside() {
               <div className="flex justify-between items-center gap-2 w-full">
                 <input
                   type="time"
+                  value={timeEvent}
                   className="border px-5 w-full h-full  focus:outline-none hover:ring-2 ring-[#513685] ring-offset-1 focus:ring-2 rounded cursor-pointer transition-all"
                   onChange={(e) => setTimeEvent(e.target.value)}
                 />

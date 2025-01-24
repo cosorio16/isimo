@@ -1,12 +1,12 @@
 import { Chart as ChartJS, defaults } from "chart.js/auto";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 defaults.responsive = true;
 defaults.maintainAspectRatio = true;
 
-function BarChart() {
+function LineChart() {
   return (
-    <Bar
+    <Line
       data={{
         labels: ["Enero", "Febrero", "Marzo", "Abril"],
         datasets: [
@@ -55,12 +55,16 @@ function BarChart() {
         },
         elements: {
           bar: {
-            borderRadius: 5,
+            borderRadius: 10,
           },
         },
+        interaction: {
+          intersect: false,
+          mode: "nearest"
+        }
       }}
     />
   );
 }
 
-export default BarChart;
+export default LineChart;

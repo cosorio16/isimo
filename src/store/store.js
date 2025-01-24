@@ -3,8 +3,9 @@ import { create } from "zustand";
 const useStore = create((set) => ({
   nameDevice: "",
   isAirDevice: false,
+  popup: false,
   scheduler: 0,
-  view: 1,
+  view: 0,
   modal: false,
   aside: false,
   handleName: (n) => set({ nameDevice: n }),
@@ -12,6 +13,7 @@ const useStore = create((set) => ({
   toggleIsAir: (bool) => set({ isAirDevice: bool }),
   toggleModal: (bool) => set({ modal: bool }),
   toggleAside: (bool) => set({ aside: bool }),
+  togglePopup: (bool) => set({ popup: bool }),
   setScheduler: (id) => set({ scheduler: id }),
 }));
 

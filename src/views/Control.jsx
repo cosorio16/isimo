@@ -49,7 +49,7 @@ function Control() {
               <DeviceCard
                 key={i}
                 name={n}
-                icon={1}
+                icon={0}
                 direction={lightObjects[i]}
                 status={lightStatus[i]}
                 modeDirection={modeDirectionsLights[i]}

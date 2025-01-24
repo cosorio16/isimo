@@ -1,14 +1,16 @@
 import { useState } from "react";
 import Arrow from "../../icons/Arrow";
 
-function Select({ name, options, setOptionSelected, optionSelected }) {
+function Select({ name, options, setOptionSelected, optionSelected, full }) {
   const [show, setShow] = useState(false);
 
   return (
     <div
       onClick={() => setShow(!show)}
       onMouseLeave={() => setShow(false)}
-      className="relative border w-full px-5 py-2 rounded flex items-center max-w-40 text-ellipsis justify-between cursor-pointer ring-[#513685] ring-offset-1 hover:ring-2 transition-all select-none"
+      className={`relative border w-full px-5 py-2 rounded flex items-center ${
+        full ? "max-w-full" : "max-w-44"
+      } text-ellipsis justify-between cursor-pointer ring-[#513685] ring-offset-1 hover:ring-2 transition-all select-none`}
     >
       <p className="text-ellipsis truncate">
         {optionSelected ? optionSelected : name}

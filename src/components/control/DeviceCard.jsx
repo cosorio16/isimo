@@ -50,17 +50,17 @@ function DeviceCard({
     setRange(e);
   };
 
-  useEffect(() => {
-    localbus.listen("object", `${status}`, callback);
-    localbus.listen("object", `${modeDirection}`, callbackMode);
-    localbus.listen("object", `${rangeDirection}`, callbackRange);
+  // useEffect(() => {
+  //   localbus.listen("object", `${status}`, callback);
+  //   localbus.listen("object", `${modeDirection}`, callbackMode);
+  //   localbus.listen("object", `${rangeDirection}`, callbackRange);
 
-    return () => {
-      localbus.unlisten("object", `${status}`, callback);
-      localbus.unlisten("object", `${modeDirection}`, callbackMode);
-      localbus.unlisten("object", `${rangeDirection}`, callbackRange);
-    };
-  }, []);
+  //   return () => {
+  //     localbus.unlisten("object", `${status}`, callback);
+  //     localbus.unlisten("object", `${modeDirection}`, callbackMode);
+  //     localbus.unlisten("object", `${rangeDirection}`, callbackRange);
+  //   };
+  // }, []);
 
   const eventsDirections = [direction, rangeDirection];
 
@@ -73,7 +73,6 @@ function DeviceCard({
 
     setScheduler(objectsId);
   };
-
 
   return (
     <div className="flex min-w-56 w-full max-w-full border flex-col gap-5 px-4 py-6 rounded-md shadow hover:shadow-lg cursor-pointer bg-white h-fit text-[#606060] transition-all duration-300">
@@ -104,13 +103,13 @@ function DeviceCard({
             <div className="flex items-center gap-2">
               <button
                 onClick={() => handleAddRange()}
-                className="border bg-[#513685] text-white p-2 rounded-full rotate-[90deg] active:scale-90 transition-all duration-300 shadow-md"
+                className="border bg-[#513685] text-white p-2 rounded-full rotate-[90deg] active:scale-90 transition-all duration-300 shadow"
               >
                 <Arrow sizes={25} />
               </button>
               <button
                 onClick={() => handleMinusRange()}
-                className="border bg-[#513685] text-white p-2 rounded-full rotate-[270deg] active:scale-90 transition-all duration-300 shadow-md"
+                className="border bg-[#513685] text-white p-2 rounded-full rotate-[270deg] active:scale-90 transition-all duration-300 shadow"
               >
                 <Arrow sizes={25} />
               </button>
@@ -150,10 +149,10 @@ function DeviceCard({
           className="flex items-center gap-2 p-2 rounded-full hover:bg-[#93D50A] hover:bg-opacity-15 transition-all duration-200 font-medium"
           onClick={(e) => {
             e.stopPropagation();
+            toggleIsAir(isAir ? isAir : false);
             toggleAside(true);
             handleSetScheduler();
             handleName(`${name}`);
-            toggleIsAir(isAir ? isAir : false);
           }}
         >
           <span className="text-[#93D50A]">
