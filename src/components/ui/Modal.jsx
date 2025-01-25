@@ -40,10 +40,10 @@ function Modal() {
               //Energia Total
               //Factor de potencia
             }
-            <DataCard />
-            <DataCard />
-            <DataCard />
-            <DataCard />
+            <DataCard data={1000} icon={"2"} unit={"kwH"} />
+            <DataCard data={1000} icon={"2"} unit={"kwH"} />
+            <DataCard data={1000} icon={"2"} unit={"kwH"} />
+            <DataCard data={1000} icon={"2"} unit={"kwH"} />
           </div>
           <div className="h-[600px] grid grid-cols-3 gap-10">
             <div className="bg-white flex items-center justify-between h-full border w-full col-span-2">

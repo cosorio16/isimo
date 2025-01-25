@@ -28,13 +28,12 @@ function Home() {
             icon={"3"}
             data={25}
             unit={"°C"}
-            title={"Temperatura del recinto"}
+            title={"Temperatura recinto"}
           />
           <DataCard
             icon={"4"}
-            data={34.2}
-            unit={"%"}
-            title={"Porcentaje Aires"}
+            data={9}
+            title={"Dispositivos"}
           />
         </section>
         <section className="border p-4 bg-white rounded h-[600px] flex items-center justify-center">

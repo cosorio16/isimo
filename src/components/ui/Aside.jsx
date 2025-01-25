@@ -1,5 +1,5 @@
 import useStore from "../../store/store";
-import ScheduleCard from "../../components/ScheduleCard";
+import ScheduleCard from "../data/ScheduleCard";
 import { useCallback, useEffect, useState } from "react";
 import { getAllSchedulers, getEvents } from "../../utils/utils";
 import Select from "./Select";

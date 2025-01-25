@@ -132,4 +132,3 @@ export async function deleteEvent(id) {
     console.error(`Error al hacer el fetch: ${error}`);
   }
 }
-

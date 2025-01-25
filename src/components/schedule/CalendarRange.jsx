@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Schedule from "../../icons/Schedule";
 
-function Calendar() {
+function CalendarRange() {
   const [show, setShow] = useState(true);
 
   return (
@@ -50,4 +50,4 @@ function Calendar() {
   );
 }
 
-export default Calendar;
+export default CalendarRange;

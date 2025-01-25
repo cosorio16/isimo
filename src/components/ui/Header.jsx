@@ -6,7 +6,7 @@ import Bell from "../../icons/Bell";
 import Settings from "../../icons/Settings";
 
 function Header() {
-  const { toggleView, togglePopup } = useStore();
+  const { toggleView, togglePopup, view } = useStore();
 
   return (
     <header className="flex items-center justify-between border-b bg-opacity-80 px-16 lg:px-24 2xl:px-32 h-24 text-[#513685] bg-white fixed w-screen left-0 top-0 backdrop-blur z-10">
@@ -46,9 +46,11 @@ function Header() {
       </nav>
       <div className="flex items-center justify-center justify-items-center">
         <div className="flex items-center">
-          <button onClick={() => togglePopup(true)} className="">
-            <Settings sizes={30} />
-          </button>
+          {view == 0 && (
+            <button onClick={() => togglePopup(true)} className="">
+              <Settings sizes={30} />
+            </button>
+          )}
           <button></button>
         </div>
       </div>

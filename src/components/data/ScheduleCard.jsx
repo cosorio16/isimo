@@ -1,10 +1,10 @@
-import Delete from "../icons/Delete";
-import Power from "../icons/Power";
-import Ice from "../icons/Ice";
-import Edit from "../icons/Edit";
-import Clock from "../icons/Clock";
-import { deleteEvent } from "../utils/utils";
-import times from "../lib/timeslib";
+import Delete from "../../icons/Delete";
+import Power from "../../icons/Power";
+import Ice from "../../icons/Ice";
+import Edit from "../../icons/Edit";
+import Clock from "../../icons/Clock";
+import { deleteEvent } from "../../utils/utils";
+import times from "../../lib/timeslib";
 
 function ScheduleCard({
   name,
