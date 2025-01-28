@@ -12,14 +12,14 @@ function Datacard({ icon, data, unit, title, color }) {
 
   return (
     <div className="bg-white flex items-center gap-5 border p-4 rounded hover:shadow-md select-none text-[#606060] transition-all duration-300">
-      <span className="text-[#fff] p-2 rounded bg-[#513685] bg-opacity-90">
+      <span className="text-[#513685] p-2 rounded bg-[#513685] bg-opacity-20">
         {icon && <Icon sizes={40} />}
       </span>
       <div className="flex flex-col">
         <span className="font-medium text-ellipsis max-w-48 truncate text-base">
           {title}
         </span>
-        <span className="text-[#513685] text-3xl font-bold">
+        <span className="text-[#222] text-3xl font-bold">
           <NumberFlow value={data} suffix={unit} />
         </span>
       </div>

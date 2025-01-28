@@ -8,6 +8,7 @@ import Air from "../../icons/Air";
 import Ice from "../../icons/Ice";
 import NumberFlow from "@number-flow/react";
 import Arrow from "../../icons/Arrow";
+import Clock from "../../icons/Clock";
 
 function DeviceCard({
   name,
