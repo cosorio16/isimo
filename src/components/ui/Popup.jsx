@@ -4,18 +4,18 @@ import Dollar from "../../icons/Dollar";
 import { useEffect, useState } from "react";
 
 function Popup() {
-  const { popup, togglePopup } = useStore();
+  const { popup, togglePopup, setAmount } = useStore();
   const [price, setPrice] = useState(0);
 
   useEffect(() => {
     let price = localStorage.getItem("energyPrice");
-    setPrice(price);
+    setPrice(price || 0);
   }, []);
 
-  const handleSaveConfig = (p) => {
+  const handleSaveConfig = () => {
     localStorage.setItem("energyPrice", price);
-    console.log(price);
     togglePopup(false);
+    setAmount(price);
   };
 
   return (

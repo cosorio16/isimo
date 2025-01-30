@@ -34,16 +34,35 @@ function Modal() {
               //tiempo de funcionamiento
               //temperatura del aire
               //temperatura del recinto
-              //tiempo de funcionamiento
               //Energia Fase 1, 2, 3
               //Potencia, Corriente, Frecuencia
               //Energia Total
               //Factor de potencia
             }
-            <DataCard data={1000} icon={"2"} unit={"kwH"} />
-            <DataCard data={1000} icon={"2"} unit={"kwH"} />
-            <DataCard data={1000} icon={"2"} unit={"kwH"} />
-            <DataCard data={1000} icon={"2"} unit={"kwH"} />
+            <DataCard
+              data={10}
+              icon={"0"}
+              unit={"s"}
+              title={"Tiempo Funcionamiento"}
+            />
+            <DataCard
+              data={"1"}
+              icon={"2"}
+              unit={"W"}
+              title={"Potencia Circuito"}
+            />
+            <DataCard
+              data={1000}
+              icon={"2"}
+              unit={""}
+              title={"Factor de Potencia"}
+            />
+            <DataCard
+              data={1000}
+              icon={"2"}
+              unit={"kwH"}
+              title={"Consumo Circuito"}
+            />
           </div>
           <div className="h-[600px] grid grid-cols-3 gap-10">
             <div className="bg-white flex items-center justify-between h-full border w-full col-span-2">

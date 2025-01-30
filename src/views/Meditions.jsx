@@ -1,40 +1,53 @@
 import Header from "../components/ui/Header";
-import Search from "../icons/Search";
 import MeditionCard from "../components/data/MeditionCard";
 import LineChart from "../charts/LineChart";
 import BarChart from "../charts/BarChart";
 import Datacard from "../components/data/Datacard";
-import Select from "../components/ui/Select";
 import Pie from "../charts/Pie";
+import objs from "../lib/objectslib";
 
 function Meditions() {
+  const circuitData = [
+    { circuit: "1", data: objs.circuit1 },
+    { circuit: "2", data: objs.circuit2 },
+    { circuit: "3", data: objs.circuit3 },
+    { circuit: "4", data: objs.circuit4 },
+  ];
+
   return (
     <>
       <Header />
-      <main className="flex flex-col px-16 py-10 pt-32 gap-10 bg-zinc-50 min-h-screen text-[#606060]">
+      <main className="flex flex-col px-10 py-10 pt-32 gap-10 bg-zinc-50 min-h-screen text-[#606060]">
         <section className="flex items-center justify-between">
-          <div className="flex border items-center gap-2 px-5 py-2 w-96 rounded bg-white ring-2 ring-transparent hover:ring-[#513685] transition-all duration-300 focus-within:ring-[#513685]">
-            <Search sizes={25} />
-            <input
-              type="text"
-              placeholder="Buscar"
-              className="focus:outline-none bg-transparent w-full"
-            />
-          </div>
-
           <button className="border px-5 py-2 text-lg font-medium text-white bg-[#513685] w-fit rounded shadow">
             Descargar Datos
           </button>
         </section>
         <section className="grid grid-cols-4 gap-5">
-          <Datacard data={3000} title={"Titulo"} icon={"2"} />
-          <Datacard data={3000} title={"Titulo"} icon={"2"} />
-          <Datacard data={3000} title={"Titulo"} icon={"2"} />
-          <Datacard data={3000} title={"Titulo"} icon={"2"} />
-          <Datacard data={3000} title={"Titulo"} icon={"2"} />
-          <Datacard data={3000} title={"Titulo"} icon={"2"} />
-          <Datacard data={3000} title={"Titulo"} icon={"2"} />
-          <Datacard data={3000} title={"Titulo"} icon={"2"} />
+          <Datacard
+            data={3000}
+            title={"Eneria Total"}
+            icon={"2"}
+            unit={"Kwh"}
+          />
+          <Datacard
+            data={3000}
+            title={"Potencia Total"}
+            icon={"2"}
+            unit={"W"}
+          />
+          <Datacard
+            data={3000}
+            title={"Factor de Potencia"}
+            icon={"2"}
+            unit={""}
+          />
+          <Datacard
+            data={10}
+            title={"Temperatura Recinto"}
+            icon={"3"}
+            unit={"°C"}
+          />
         </section>
 
         <section className="grid grid-cols-2 gap-5">
@@ -45,18 +58,44 @@ function Meditions() {
             <LineChart />
           </div>
           <div className="border bg-white shadow rounded py-5">
-            <BarChart />
-          </div>
-          <div className="border bg-white shadow rounded py-5">
             <LineChart />
+          </div>
+          <div className="border bg-white shadow rounded py-5 h-[500px] flex items-center justify-center">
+            <Pie />
           </div>
         </section>
 
+        <section className="grid grid-cols-4 gap-5">
+          <Datacard
+            data={3000}
+            title={"Potencia Reactiva"}
+            icon={"2"}
+            unit={"Var"}
+          />
+          <Datacard
+            data={3000}
+            title={"Potencia Aparente"}
+            icon={"2"}
+            unit={"VA"}
+          />
+          <Datacard
+            data={3000}
+            title={"Energia Reactiva"}
+            icon={"2"}
+            unit={"kvarh"}
+          />
+          <Datacard
+            data={3000}
+            title={"Consumo Aires"}
+            icon={"2"}
+            unit={"Kwh"}
+          />
+        </section>
+
         <section className="grid grid-cols-2 gap-5">
-          <MeditionCard />
-          <MeditionCard />
-          <MeditionCard />
-          <MeditionCard />
+          {circuitData.map(({ circuit, data }) => (
+            <MeditionCard key={circuit} circuit={circuit} data={data} />
+          ))}
         </section>
       </main>
     </>

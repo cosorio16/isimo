@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 const useStore = create((set) => ({
   nameDevice: "",
+  quantityAmount: localStorage.getItem("energyPrice") || 0,
   isAirDevice: false,
   popup: false,
   scheduler: 0,
@@ -15,6 +16,7 @@ const useStore = create((set) => ({
   toggleAside: (bool) => set({ aside: bool }),
   togglePopup: (bool) => set({ popup: bool }),
   setScheduler: (id) => set({ scheduler: id }),
+  setAmount: (amount) => set({ quantityAmount: amount }),
 }));
 
 export default useStore;

@@ -11,16 +11,16 @@ function Calendar() {
     <div
       onClick={() => setShow(!show)}
       onMouseLeave={() => setShow(false)}
-      className="flex items-center gap-3 relative w-52 border p-2 rounded text-[#606060] hover:ring-2 ring-offset-2 hover:ring-[#513685] cursor-pointer transition-all duration-300"
+      className="flex items-center gap-3 relative border p-2 rounded text-[#606060] hover:ring-2 ring-offset-2 hover:ring-[#513685] cursor-pointer transition-all duration-300"
     >
       <Schedule sizes={25} />
-      <span className="font-medium">Calendario</span>
+      {/* <span className="font-medium">Calendario</span> */}
 
       <div
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className={`flex flex-col gap-2 absolute top-full -left-14 border w-80 min-w-fit h-20 min-h-fit hover:shadow transition-all z-10 bg-white duration-300 ${
+        className={`flex flex-col gap-2 absolute top-full left-0 border w-80 min-w-fit h-20 min-h-fit hover:shadow transition-all z-10 bg-white duration-300 ${
           show
             ? "translate-y-0 opacity-100"
             : "-translate-y-5 pointer-events-none opacity-0"

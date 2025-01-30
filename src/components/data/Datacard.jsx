@@ -5,9 +5,10 @@ import Temperature from "../../icons/Temperature";
 import Percentaje from "../../icons/Percentaje";
 import Bell from "../../icons/Bell";
 import NumberFlow from "@number-flow/react";
+import Power from "../../icons/Power"
 
 function Datacard({ icon, data, unit, title, color }) {
-  const icons = [Clock, Dollar, Energy, Temperature, Bell, Percentaje];
+  const icons = [Clock, Dollar, Energy, Temperature, Bell, Percentaje, Power];
   const Icon = icons[icon];
 
   return (
