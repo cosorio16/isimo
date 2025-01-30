@@ -9,16 +9,16 @@ defaults.maintainAspectRatio = true;
 function BarChart({}) {
   return (
     <div className="w-full h-full flex flex-col gap-5">
-      <div className="flex items-center justify-between">
+      {/* <div className="flex items-center justify-between">
         <Calendar />
         <Select name={"Seleccionar"} />
-      </div>
+      </div> */}
       {/* <h1 className="text-center text-3xl font-medium uppercase text-[#513685]">
         Titulo
       </h1> */}
       <div className="border m-auto flex items-center justify-center grow max-h-full max-w-[1200px] w-full">
         <Bar
-        className="self-center"
+          className="self-center"
           data={{
             labels: ["Enero", "Febrero", "Marzo", "Abril"],
             datasets: [

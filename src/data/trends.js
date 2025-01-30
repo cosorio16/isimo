@@ -30,4 +30,49 @@ let body = {
 
 //delete
 
+//all trends
+fetch("http://192.168.0.210/scada-main/trends/main", {
+  headers: {
+    accept: "*/*",
+    "accept-language":
+      "es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-CO;q=0.5",
+    "x-requested-with": "XMLHttpRequest",
+    cookie:
+      "user_language=; x-login=1; x-session=admin:8AAFD9EC5F585C866ADE6DE589BE20CB",
+    Referer: "http://192.168.0.210/scada-main/",
+    "Referrer-Policy": "same-origin",
+  },
+  body: null,
+  method: "GET",
+});
 
+// get trend
+
+fetch("http://192.168.0.210/scada-vis/trends/fetch", {
+  headers: {
+    accept: "application/json, text/javascript, */*; q=0.01",
+    "accept-language":
+      "es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-CO;q=0.5",
+    "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+    "x-requested-with": "XMLHttpRequest",
+    cookie:
+      "user_language=; x-login=1; x-session=admin:8AAFD9EC5F585C866ADE6DE589BE20CB",
+    Referer: "http://192.168.0.210/scada-vis/trends",
+    "Referrer-Policy": "same-origin",
+  },
+  body: "data=%7B%22dates_curr%22%3A%7B%22start%22%3A%7B%22year%22%3A2025%2C%22day%22%3A30%2C%22month%22%3A1%7D%2C%22end%22%3A%7B%22year%22%3A2025%2C%22day%22%3A31%2C%22month%22%3A1%7D%7D%2C%22id%22%3A2%2C%22dates_prev%22%3A%7B%22start%22%3A%7B%22year%22%3A2025%2C%22day%22%3A30%2C%22month%22%3A1%7D%2C%22end%22%3A%7B%22year%22%3A2025%2C%22day%22%3A31%2C%22month%22%3A1%7D%7D%7D",
+  method: "POST",
+});
+
+let body = {
+  resolution: 86400,
+  dates_curr: {
+    start: { year: 2025, day: 1, month: 1 },
+    end: { year: 2025, day: 1, month: 3 },
+  },
+  id: 2,
+  dates_prev: {
+    start: { year: 2025, day: 1, month: 1 },
+    end: { year: 2025, day: 1, month: 3 },
+  },
+};

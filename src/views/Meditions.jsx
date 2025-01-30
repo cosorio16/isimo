@@ -5,14 +5,94 @@ import BarChart from "../charts/BarChart";
 import Datacard from "../components/data/Datacard";
 import Pie from "../charts/Pie";
 import objs from "../lib/objectslib";
+import { useEffect, useState } from "react";
 
 function Meditions() {
+  const [meditions, setMeditions] = useState([]);
+
   const circuitData = [
     { circuit: "1", data: objs.circuit1 },
     { circuit: "2", data: objs.circuit2 },
     { circuit: "3", data: objs.circuit3 },
     { circuit: "4", data: objs.circuit4 },
   ];
+
+  const meditions1 = [
+    { title: "Energia Total", icon: "2", unit: "kWh", data: meditions[0] || 0 },
+    { title: "Potencia Total", icon: "2", unit: "W", data: meditions[1] || 0 },
+    {
+      title: "Factor de Potencia",
+      icon: "2",
+      unit: "",
+      data: meditions[2] || 0,
+    },
+    {
+      title: "Temperatura Recinto",
+      icon: "3",
+      unit: "°C",
+      data: meditions[3] || 0,
+    },
+  ];
+
+  const meditions2 = [
+    {
+      title: "Potencia Reactiva",
+      icon: "2",
+      unit: "Var",
+      data: meditions[4] || 0,
+    },
+    {
+      title: "Potencia Aparente",
+      icon: "2",
+      unit: "VA",
+      data: meditions[5] || 0,
+    },
+    {
+      title: "Energia Reactiva",
+      icon: "2",
+      unit: "kvarh",
+      data: meditions[6] || 0,
+    },
+    { title: "Consumo Aires", icon: "2", unit: "kWh", data: meditions[7] || 0 },
+  ];
+
+  useEffect(() => {
+    let currentMeditions = [...meditions];
+    let sum = [];
+
+    const createCallback = (index) => (e) => {
+      currentMeditions[index] = e;
+      setMeditions([...currentMeditions]);
+    };
+
+    const callbackAir = (index) => (e) => {
+      sum[index] = e;
+      let total = sum.reduce((a, b) => a + b);
+      currentMeditions[7] = total;
+      setMeditions([...currentMeditions]);
+    };
+
+    const listeners = objs.meditionsObjects.map((o, i) => {
+      const callback = createCallback(i);
+      localbus.listen("object", o, callback);
+      return { o, callback };
+    });
+
+    const listenersAir = objs.airsEnergy.map((o, i) => {
+      const callback = callbackAir(i);
+      localbus.listen("object", o, callback);
+      return { o, callback };
+    });
+
+    return () => {
+      listeners.forEach(({ o, callback }) => {
+        localbus.unlisten("object", o, callback);
+      });
+      listenersAir.forEach(({ o, callback }) => {
+        localbus.unlisten("object", o, callback);
+      });
+    };
+  }, []);
 
   return (
     <>
@@ -24,30 +104,9 @@ function Meditions() {
           </button>
         </section>
         <section className="grid grid-cols-4 gap-5">
-          <Datacard
-            data={3000}
-            title={"Eneria Total"}
-            icon={"2"}
-            unit={"Kwh"}
-          />
-          <Datacard
-            data={3000}
-            title={"Potencia Total"}
-            icon={"2"}
-            unit={"W"}
-          />
-          <Datacard
-            data={3000}
-            title={"Factor de Potencia"}
-            icon={"2"}
-            unit={""}
-          />
-          <Datacard
-            data={10}
-            title={"Temperatura Recinto"}
-            icon={"3"}
-            unit={"°C"}
-          />
+          {meditions1.map(({ title, icon, unit, data }) => (
+            <Datacard data={data} title={title} icon={icon} unit={unit} />
+          ))}
         </section>
 
         <section className="grid grid-cols-2 gap-5">
@@ -66,30 +125,9 @@ function Meditions() {
         </section>
 
         <section className="grid grid-cols-4 gap-5">
-          <Datacard
-            data={3000}
-            title={"Potencia Reactiva"}
-            icon={"2"}
-            unit={"Var"}
-          />
-          <Datacard
-            data={3000}
-            title={"Potencia Aparente"}
-            icon={"2"}
-            unit={"VA"}
-          />
-          <Datacard
-            data={3000}
-            title={"Energia Reactiva"}
-            icon={"2"}
-            unit={"kvarh"}
-          />
-          <Datacard
-            data={3000}
-            title={"Consumo Aires"}
-            icon={"2"}
-            unit={"Kwh"}
-          />
+          {meditions2.map(({ title, icon, unit, data }) => (
+            <Datacard data={data} title={title} icon={icon} unit={unit} />
+          ))}
         </section>
 
         <section className="grid grid-cols-2 gap-5">
@@ -103,20 +141,3 @@ function Meditions() {
 }
 
 export default Meditions;
-
-// tiempos de funcionamiento
-// equipos trabajando en auto
-// temperatura de cada aire
-// temperatura del lugar
-// voltaje fase a b c #1 GENERAL 33/0/1,2,3
-// potencia total
-// energia total
-
-// circuito 1, 2, 3, 4 x ABC
-// corriente
-// potencia
-// potencia reactiva
-// factor de potencia
-// potencia aparente
-// energia
-// energia reactiva hora

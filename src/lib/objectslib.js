@@ -1803,6 +1803,18 @@ let selectorSignal = [
   "2/0/9",
 ];
 
+let meditionsObjects = [
+  "33/0/92",
+  "33/0/28",
+  "33/0/60",
+  "2/1/1",
+  "33/0/44",
+  "33/0/76",
+  "33/0/108",
+];
+
+let airsEnergy = ["33/0/93", "33/0/94", "33/0/95"];
+
 let meterTopics = [
   "Corriente",
   "Potencia",
@@ -1823,4 +1835,6 @@ export default {
   totalEnergy,
   selectorSignal,
   meterTopics,
+  meditionsObjects,
+  airsEnergy,
 };
