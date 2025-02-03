@@ -26,9 +26,12 @@ function Aside() {
   const [eventAction, setEventAction] = useState(null);
   const [eventValue, setEventValue] = useState(16);
   const [eventOptions, setEventOptions] = useState([]);
+  const [eventId, setEventId] = useState(null);
   const [eventActive, setEventActive] = useState(true);
 
   const [schedulerId, setSchedulerId] = useState(scheduler[0]);
+
+  const [timesOptions, setTimesOptions] = useState([null], [null], [null]);
 
   const fetchEvents = async () => {
     let ids = schedulers
@@ -95,6 +98,8 @@ function Aside() {
     setNameEvent("");
     setTimeEvent("");
     setEventAction("");
+    setEventId(null);
+    setTimesOptions([null], [null], [null]);
   };
 
   const handleSubmitData = useCallback(async () => {
@@ -110,7 +115,7 @@ function Aside() {
       start_year: "2025",
       holidays: "",
       scheduler: schedulerId,
-      id: "0",
+      id: eventId,
       months: monthsEvent,
       daysofmonth: daysOfMonthEvent,
       daysofweek: daysOfWeekEvent,
@@ -134,6 +139,7 @@ function Aside() {
     eventValue,
     eventActive,
     schedulerId,
+    eventId,
   ]);
 
   return (
@@ -162,8 +168,18 @@ function Aside() {
                 value={event.value}
                 daysOfMonth={event.daysofmonth}
                 daysOfWeek={event.daysofweek}
+                eventAction={eventAction}
                 months={event.months}
-                onDelete={() => fetchEvents()}
+                setTimes={setTimesOptions}
+                setDate={setTimeEvent}
+                setEvent={setEventValue}
+                setName={setNameEvent}
+                setId={setEventId}
+                setEventAction={setEventAction}
+                onDelete={() => {
+                  fetchEvents();
+                  handleResetAll();
+                }}
               />
             ))
           ) : (
@@ -250,18 +266,21 @@ function Aside() {
                 options={timeslibrery.days}
                 gridCols={4}
                 setSelected={setDaysOfWeekEvent}
+                selectedOptions={timesOptions[0]}
               />
               <Date
                 name={"Dias del mes"}
                 options={timeslibrery.daysMonth}
                 gridCols={7}
                 setSelected={setDaysOfMonthEvent}
+                selectedOptions={timesOptions[1]}
               />
               <Date
                 name={"Meses"}
                 options={timeslibrery.months}
                 gridCols={4}
                 setSelected={setMonthsEvent}
+                selectedOptions={timesOptions[2]}
               />
 
               <div className="grid grid-cols-2">
@@ -294,7 +313,15 @@ function Aside() {
               } transition-all duration-300`}
             >
               <Add sizes={20} />
-              Añadir Tarea
+              {eventId == null ? "Añadir" : "Editar"} Tarea
+            </button>
+            <button
+              onClick={() => handleResetAll()}
+              className={`border flex items-center gap-2 justify-center py-2 rounded text-[#513685] font-medium border-[#513685] ${
+                eventId !== null ? "scale-100" : "scale-0"
+              } transition-all duration-300`}
+            >
+              <Close sizes={25} /> Cancelar
             </button>
           </>
         )}

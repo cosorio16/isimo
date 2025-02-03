@@ -11,10 +11,17 @@ function ScheduleCard({
   time,
   id,
   onDelete,
+  eventAction,
   value,
   months,
   daysOfMonth,
   daysOfWeek,
+  setTimes,
+  setName,
+  setDate,
+  setEvent,
+  setEventAction,
+  setId,
 }) {
   const handleDeleteEvent = async () => {
     try {
@@ -22,6 +29,27 @@ function ScheduleCard({
     } catch (error) {
       console.error(`Error al eliminar card: ${error}`);
     }
+  };
+
+  const handleEditTimes = () => {
+    let weekDaysEvent = times.days.filter(
+      (m, i) => daysOfWeek.split("")[i] == 1 && m
+    );
+    let monthDaysEvent = times.daysMonth.filter(
+      (m, i) => daysOfMonth.split("")[i] == 1 && m
+    );
+    let monthsEvent = times.months.filter(
+      (m, i) => months.split("")[i] == 1 && m
+    );
+
+    setName(name);
+    setDate(time.split(":")[0] < 10 ? `0${time}` : time);
+    setEvent(value);
+    setId(id);
+    setEventAction(
+      value > 1 ? "Set Temperatura" : value > 0 ? "Encender" : "Apagar"
+    );
+    setTimes([weekDaysEvent, monthDaysEvent, monthsEvent]);
   };
 
   return (
@@ -45,6 +73,12 @@ function ScheduleCard({
         )}
       </div>
       <div className="flex items-center gap-2">
+        <button
+          onClick={() => handleEditTimes()}
+          className="aspect-square rounded p-2 hover:bg-[#513685] hover:text-white transition-all duration-300"
+        >
+          <Edit sizes={23} />
+        </button>
         <button
           onClick={() => {
             handleDeleteEvent();

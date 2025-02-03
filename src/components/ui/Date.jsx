@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import Arrow from "../../icons/Arrow";
 import Schedule from "../../icons/Schedule";
 
-function Date({ name, options, gridCols, setSelected }) {
+function Date({ name, options, gridCols, setSelected, selectedOptions }) {
   const [datesSelected, setDatesSelected] = useState(options);
   const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    setDatesSelected(selectedOptions || options);
+  }, [selectedOptions]);
 
   const handleAddDate = (date) => {
     if (datesSelected.includes(date)) {
@@ -32,6 +36,7 @@ function Date({ name, options, gridCols, setSelected }) {
 
     setSelected(transformDates);
   }, [datesSelected]);
+
 
   return (
     <>
