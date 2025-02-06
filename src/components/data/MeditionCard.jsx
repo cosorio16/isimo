@@ -78,19 +78,19 @@ function MeditionCard({ circuit, data }) {
       <div className="flex justify-between">
         <span className="text-[#513685] font-medium">Fase A </span>
         <span className="text-xl ">
-          <NumberFlow value={meterValues[0] || 0} /> kWh
+          <NumberFlow value={meterValues[0] || 0} />
         </span>
       </div>
       <div className="flex justify-between">
         <span className="text-[#513685] font-medium">Fase B </span>
         <span className="text-xl ">
-          <NumberFlow value={meterValues[1] || 0} /> kWh
+          <NumberFlow value={meterValues[1] || 0} />
         </span>
       </div>
       <div className="flex justify-between">
         <span className="text-[#513685] font-medium">Fase C </span>
         <span className="text-xl ">
-          <NumberFlow value={meterValues[2] || 0} /> kWh
+          <NumberFlow value={meterValues[2] || 0} />
         </span>
       </div>
       <div
@@ -100,7 +100,7 @@ function MeditionCard({ circuit, data }) {
       >
         <span className="text-[#513685] font-medium">Total </span>
         <span className="text-xl ">
-          <NumberFlow value={meterValues[3] || 0} /> kWh
+          <NumberFlow value={meterValues[3] || 0} />
         </span>
       </div>
     </div>

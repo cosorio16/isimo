@@ -16,11 +16,19 @@ function DeviceCard({
   isAir,
   direction,
   rangeDirection,
+  id,
   status,
   modeDirection,
 }) {
-  const { toggleAside, toggleModal, setScheduler, handleName, toggleIsAir } =
-    useStore();
+  const {
+    toggleAside,
+    toggleModal,
+    setScheduler,
+    handleName,
+    toggleIsAir,
+    setDevice,
+    device,
+  } = useStore();
 
   const [range, setRange] = useState(16);
   const [active, setActive] = useState(false);
@@ -74,6 +82,7 @@ function DeviceCard({
 
     setScheduler(objectsId);
   };
+
 
   return (
     <div className="flex min-w-56 w-full max-w-full border flex-col gap-5 px-4 py-6 rounded-md shadow hover:shadow-lg cursor-pointer bg-white h-fit text-[#606060] transition-all duration-300">
@@ -139,6 +148,8 @@ function DeviceCard({
           onClick={(e) => {
             e.stopPropagation();
             toggleModal(true);
+            toggleIsAir(isAir ? isAir : false);
+            setDevice(id);
           }}
         >
           <span className="text-[#513685]">

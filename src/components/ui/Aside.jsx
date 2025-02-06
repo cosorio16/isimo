@@ -40,16 +40,14 @@ function Aside() {
     try {
       const promises = ids.map((id) => getEvents(id));
       const allEvents = await Promise.all(promises);
-      setEvents(
-        allEvents.flatMap((o) =>
-          o.events.sort((a, b) => {
-            if (a.start_hour === b.start_hour) {
-              return a.start_min - b.start_min;
-            }
-            return a.start_hour - b.start_hour;
-          })
-        )
-      );
+      const combinedEvents = allEvents.flatMap((e) => e.events);
+      const ordenedEvents = combinedEvents.sort((a, b) => {
+        if (a.start_hour === b.start_hour) {
+          return a.start_min - b.start_min;
+        }
+        return a.start_hour - b.start_hour;
+      });
+      setEvents(ordenedEvents);
     } catch (error) {
       console.error(`Error en el fetch events: ${error}`);
     }
@@ -83,7 +81,7 @@ function Aside() {
     let optionsMap = {
       Encender: 1,
       Apagar: 0,
-      "Set Temperatura": 16,
+      "Set Temperatura": eventValue || 16,
     };
 
     let ids = schedulers
@@ -168,6 +166,7 @@ function Aside() {
                 value={event.value}
                 daysOfMonth={event.daysofmonth}
                 daysOfWeek={event.daysofweek}
+                eventActive={event.active}
                 eventAction={eventAction}
                 months={event.months}
                 setTimes={setTimesOptions}
@@ -176,6 +175,7 @@ function Aside() {
                 setName={setNameEvent}
                 setId={setEventId}
                 setEventAction={setEventAction}
+                setEventActive={setEventActive}
                 onDelete={() => {
                   fetchEvents();
                   handleResetAll();

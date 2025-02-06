@@ -2,11 +2,11 @@ import useStore from "../../store/store";
 import Home from "../../icons/Home";
 import Device from "../../icons/Device";
 import Meter from "../../icons/Meter";
-import Bell from "../../icons/Bell";
 import Settings from "../../icons/Settings";
+import Bell from "../../icons/Bell";
 
 function Header() {
-  const { toggleView, togglePopup, view } = useStore();
+  const { toggleView, togglePopup, view, quantityAmount } = useStore();
 
   return (
     <header className="flex items-center justify-between border-b bg-opacity-80 px-16 lg:px-24 2xl:px-32 h-24 text-[#513685] bg-white fixed w-screen left-0 top-0 backdrop-blur z-10">
@@ -40,7 +40,14 @@ function Header() {
       <div className="flex items-center justify-center justify-items-center">
         <div className="flex items-center">
           {view == 0 && (
-            <button onClick={() => togglePopup(true)} className="">
+            <button onClick={() => togglePopup(true)} className="relative">
+              {quantityAmount == 0 && (
+                <>
+                  <span className="size-3 rounded-full bg-red-600 absolute top-0 right-0 animate-ping"></span>
+                  <span className="size-3 rounded-full bg-red-600 absolute top-0 right-0"></span>
+                </>
+              )}
+
               <Settings sizes={30} />
             </button>
           )}

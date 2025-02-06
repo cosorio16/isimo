@@ -4,7 +4,7 @@ import Dollar from "../../icons/Dollar";
 import { useEffect, useState } from "react";
 
 function Popup() {
-  const { popup, togglePopup, setAmount } = useStore();
+  const { popup, togglePopup, setAmount, quantityAmount } = useStore();
   const [price, setPrice] = useState(0);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ function Popup() {
             <Close sizes={25} />
           </button>
 
-          <form className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1">
             <span className="text-sm font-medium">Precio del Kwh</span>
             <div className="border flex items-center focus-within:ring-2 focus-within:ring-[#513685] hover:ring-2 hover:ring-[#513685] ring-offset-1 transition-all duration-300 rounded">
               <span className="p-2 ">
@@ -46,9 +46,14 @@ function Popup() {
                 placeholder="Precio del KwH"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
+                min={0}
+                step={100}
               />
             </div>
-          </form>
+            {quantityAmount == 0 && (
+              <span className="text-sm text-red-500">Configure el precio local de la energia.</span>
+            )}
+          </div>
           <div>
             <button
               onClick={() => handleSaveConfig()}

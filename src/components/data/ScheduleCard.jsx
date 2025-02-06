@@ -11,7 +11,8 @@ function ScheduleCard({
   time,
   id,
   onDelete,
-  eventAction,
+  eventActive,
+  setEventActive,
   value,
   months,
   daysOfMonth,
@@ -49,6 +50,7 @@ function ScheduleCard({
     setEventAction(
       value > 1 ? "Set Temperatura" : value > 0 ? "Encender" : "Apagar"
     );
+    setEventActive(eventActive);
     setTimes([weekDaysEvent, monthDaysEvent, monthsEvent]);
   };
 

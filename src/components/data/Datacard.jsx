@@ -5,7 +5,7 @@ import Temperature from "../../icons/Temperature";
 import Percentaje from "../../icons/Percentaje";
 import Bell from "../../icons/Bell";
 import NumberFlow from "@number-flow/react";
-import Power from "../../icons/Power"
+import Power from "../../icons/Power";
 
 function Datacard({ icon, data, unit, title, color }) {
   const icons = [Clock, Dollar, Energy, Temperature, Bell, Percentaje, Power];
@@ -21,7 +21,11 @@ function Datacard({ icon, data, unit, title, color }) {
           {title}
         </span>
         <span className="text-[#222] text-3xl font-bold">
-          <NumberFlow value={data} suffix={unit} />
+          {typeof data == "number" ? (
+            <NumberFlow value={data} suffix={unit} />
+          ) : (
+            data
+          )}
         </span>
       </div>
     </div>

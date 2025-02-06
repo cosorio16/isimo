@@ -53,6 +53,7 @@ function Control() {
                 direction={lightObjects[i]}
                 status={lightStatus[i]}
                 modeDirection={modeDirectionsLights[i]}
+                id={i}
               />
             ))}
           </div>
@@ -72,6 +73,7 @@ function Control() {
                 status={airsObjects[i]}
                 rangeDirection={airRangesObjects[i]}
                 modeDirection={modeDirectionsAir[i]}
+                id={i + 5}
               />
             ))}
           </div>
@@ -87,6 +89,7 @@ function Control() {
               icon={2}
               status={"1/1/4"}
               modeDirection={"2/0/4"}
+              id={8}
             />
           </div>
         </section>

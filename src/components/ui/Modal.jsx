@@ -1,11 +1,54 @@
+import { useEffect, useState } from "react";
 import useStore from "../../store/store";
 import Close from "../../icons/Close";
 import DataCard from "../data/Datacard";
 import BarChart from "../../charts/BarChart";
+import LineChart from "../../charts/LineChart";
 import Pie from "../../charts/Pie";
+import objs from "../../lib/objectslib";
 
 function Modal() {
-  const { modal, toggleModal } = useStore();
+  const { modal, toggleModal, isAirDevice, device } = useStore();
+
+  const [dataCards, setDataCards] = useState([]);
+
+  useEffect(() => {
+    let currentData = [...dataCards];
+
+    const createCallback = (index) => (e) => {
+      currentData[index] = e;
+      setDataCards([...currentData]);
+    };
+
+    const listeners = objs.modalDirections[device].map((d, i) => {
+      const callback = createCallback(i);
+      localbus.listen("object", d, callback);
+      return { d, callback };
+    });
+
+    return () => {
+      listeners.forEach(({ d, callback }) => {
+        localbus.unlisten("object", d, callback);
+      });
+    };
+  }, [device]);
+
+  // function convertHours(hours) {
+  //   let seconds = Math.floor(hours * 3600);
+  //   let days = Math.floor(seconds / (24 * 3600));
+  //   seconds %= 24 * 3600;
+  //   let hoursLeft = Math.floor(seconds / 3600);
+  //   seconds %= 3600;
+  //   let minutes = Math.floor(seconds / 60);
+  //   seconds %= 60;
+
+  //   if (days >= 1) {
+  //     return `${days}d/${hoursLeft}h/${minutes}m/${seconds}s`;
+  //   } else {
+  //     return `${hoursLeft}h/${minutes}m/${seconds}s`;
+  //   }
+  // }
+
   return (
     <div
       className={`fixed inset-0 pt-10 px-5 text-[#606060] select-none ${
@@ -29,36 +72,36 @@ function Modal() {
         </button>
         <div className="flex flex-col gap-10">
           <div className="grid grid-cols-4 gap-4">
-            {
-              //onOff
-              //tiempo de funcionamiento
-              //temperatura del aire
-              //temperatura del recinto
-              //Energia Fase 1, 2, 3
-              //Potencia, Corriente, Frecuencia
-              //Energia Total
-              //Factor de potencia
-            }
             <DataCard
-              data={10}
-              icon={"0"}
-              unit={"s"}
-              title={"Tiempo Funcionamiento"}
+              data={dataCards[0] ? "On" : "Off"}
+              icon={"6"}
+              unit={""}
+              title={"Estado"}
             />
+            {isAirDevice ? (
+              <DataCard
+                data={dataCards[1]}
+                icon={"3"}
+                unit={"°C"}
+                title={"Temperatura"}
+              />
+            ) : (
+              <DataCard
+                data={dataCards[1]}
+                icon={"0"}
+                unit={"h"}
+                title={"Tiempo Funcionamiento"}
+              />
+            )}
             <DataCard
-              data={"1"}
+              data={dataCards[2]}
               icon={"2"}
               unit={"W"}
               title={"Potencia Circuito"}
             />
+
             <DataCard
-              data={1000}
-              icon={"2"}
-              unit={""}
-              title={"Factor de Potencia"}
-            />
-            <DataCard
-              data={1000}
+              data={dataCards[3]}
               icon={"2"}
               unit={"kwH"}
               title={"Consumo Circuito"}
@@ -66,7 +109,7 @@ function Modal() {
           </div>
           <div className="h-[600px] grid grid-cols-3 gap-10">
             <div className="bg-white flex items-center justify-between h-full border w-full col-span-2">
-              <BarChart />
+              <LineChart />
             </div>
             <div className="bg-white flex items-center justify-between border">
               <Pie />
