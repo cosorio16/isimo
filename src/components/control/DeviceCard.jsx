@@ -83,7 +83,6 @@ function DeviceCard({
     setScheduler(objectsId);
   };
 
-
   return (
     <div className="flex min-w-56 w-full max-w-full border flex-col gap-5 px-4 py-6 rounded-md shadow hover:shadow-lg cursor-pointer bg-white h-fit text-[#606060] transition-all duration-300">
       <div className="flex items-center justify-between border-b gap-2 pb-5">
@@ -150,6 +149,7 @@ function DeviceCard({
             toggleModal(true);
             toggleIsAir(isAir ? isAir : false);
             setDevice(id);
+            console.log(direction);
           }}
         >
           <span className="text-[#513685]">

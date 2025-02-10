@@ -3,14 +3,8 @@ import Schedule from "../../icons/Schedule";
 import ArrowRounded from "../../icons/ArrowRounded";
 import timeobj from "../../lib/timeslib";
 
-function Calendar() {
+function Calendar({date, setDate}) {
   const [show, setShow] = useState(false);
-
-  const [date, setDate] = useState({
-    month: new Date().getMonth(),
-    year: new Date().getFullYear(),
-    day: new Date().getDate(),
-  });
 
   const changeMonth = (increment) => {
     setDate((prevDate) => {
@@ -52,30 +46,33 @@ function Calendar() {
     return days;
   }, [date.month, date.year]);
 
-  console.log(date);
-
   return (
     <div
       onClick={() => setShow(!show)}
       onMouseLeave={() => setShow(false)}
-      className="px-10 flex items-center gap-3 relative border p-2 rounded text-[#606060] hover:ring-2 ring-offset-2 hover:ring-[#513685] cursor-pointer transition-all duration-300"
+      className="min-w-fit w-60 px-10 flex items-center gap-3 relative border p-2 rounded text-[#606060] hover:ring-2 ring-offset-2 hover:ring-[#513685] cursor-pointer transition-all duration-300"
     >
       <Schedule sizes={25} />
-      <span className="font-medium">{`${date.day} ${
+      <span className="font-medium truncate text-ellipsis">{`${date.day} ${
         timeobj.months[date.month]
       } ${date.year}`}</span>
 
       <div
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
+        // onClick={(e) => {
+        //   e.stopPropagation();
+        // }}
         className={`flex flex-col gap-2 absolute top-full left-0 border w-80 min-w-fit h-20 min-h-fit hover:shadow transition-all z-10 bg-white duration-300 ${
           show
             ? "translate-y-0 opacity-100"
             : "-translate-y-5 pointer-events-none opacity-0"
         }`}
       >
-        <div className="flex items-center justify-between px-4 border-b py-2 bg-[#513685] text-white font-semibold">
+        <div
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+          className="flex items-center justify-between px-4 border-b py-2 bg-[#513685] text-white font-semibold"
+        >
           <button onClick={() => changeMonth(-1)}>
             <ArrowRounded sizes={20} />
           </button>

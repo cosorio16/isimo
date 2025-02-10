@@ -134,11 +134,9 @@ export async function deleteEvent(id) {
 }
 
 export async function getAllTrends() {
-
-
   try {
     const response = await fetch(
-      `${window.location.origin}/scada-vis/trends/main`,
+      `${window.location.origin}/scada-main/trends/main`,
       {
         method: "GET",
         headers: {

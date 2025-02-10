@@ -12,9 +12,6 @@ function Modal() {
 
   const [dataCards, setDataCards] = useState([]);
 
-
-  
-
   // useEffect(() => {
   //   let currentData = [...dataCards];
 
@@ -36,21 +33,21 @@ function Modal() {
   //   };
   // }, [device]);
 
-  // function convertHours(hours) {
-  //   let seconds = Math.floor(hours * 3600);
-  //   let days = Math.floor(seconds / (24 * 3600));
-  //   seconds %= 24 * 3600;
-  //   let hoursLeft = Math.floor(seconds / 3600);
-  //   seconds %= 3600;
-  //   let minutes = Math.floor(seconds / 60);
-  //   seconds %= 60;
+  function convertHours(hours) {
+    let seconds = Math.floor(hours * 3600);
+    let days = Math.floor(seconds / (24 * 3600));
+    seconds %= 24 * 3600;
+    let hoursLeft = Math.floor(seconds / 3600);
+    seconds %= 3600;
+    let minutes = Math.floor(seconds / 60);
+    seconds %= 60;
 
-  //   if (days >= 1) {
-  //     return `${days}d/${hoursLeft}h/${minutes}m/${seconds}s`;
-  //   } else {
-  //     return `${hoursLeft}h/${minutes}m/${seconds}s`;
-  //   }
-  // }
+    if (days >= 1) {
+      return `${days}d/${hoursLeft}h/${minutes}m/${seconds}s`;
+    } else {
+      return `${hoursLeft}h/${minutes}m/${seconds}s`;
+    }
+  }
 
   return (
     <div
