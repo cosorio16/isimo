@@ -59,17 +59,17 @@ function DeviceCard({
     setRange(e);
   };
 
-  useEffect(() => {
-    localbus.listen("object", `${status}`, callback);
-    localbus.listen("object", `${modeDirection}`, callbackMode);
-    localbus.listen("object", `${rangeDirection}`, callbackRange);
+  // useEffect(() => {
+  //   localbus.listen("object", `${status}`, callback);
+  //   localbus.listen("object", `${modeDirection}`, callbackMode);
+  //   localbus.listen("object", `${rangeDirection}`, callbackRange);
 
-    return () => {
-      localbus.unlisten("object", `${status}`, callback);
-      localbus.unlisten("object", `${modeDirection}`, callbackMode);
-      localbus.unlisten("object", `${rangeDirection}`, callbackRange);
-    };
-  }, []);
+  //   return () => {
+  //     localbus.unlisten("object", `${status}`, callback);
+  //     localbus.unlisten("object", `${modeDirection}`, callbackMode);
+  //     localbus.unlisten("object", `${rangeDirection}`, callbackRange);
+  //   };
+  // }, []);
 
   const eventsDirections = [direction, rangeDirection];
 

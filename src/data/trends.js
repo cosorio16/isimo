@@ -46,6 +46,8 @@ fetch("http://192.168.0.210/scada-main/trends/main", {
   method: "GET",
 });
 
+
+
 // get trend
 
 fetch("http://192.168.0.210/scada-vis/trends/fetch", {

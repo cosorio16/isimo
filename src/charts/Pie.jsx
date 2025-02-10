@@ -27,26 +27,26 @@ function Pie() {
     }
   };
 
-  useEffect(() => {
-    let values = [...energy];
-    const createCallBack = (index) => (e) => {
-      values[index] = e;
-      setEnergy([...values]);
-    };
+  // useEffect(() => {
+  //   let values = [...energy];
+  //   const createCallBack = (index) => (e) => {
+  //     values[index] = e;
+  //     setEnergy([...values]);
+  //   };
 
-    const listeners = objs.totalEnergy.map((t, i) => {
-      const callback = createCallBack(i);
-      const direction = t.address;
-      localbus.listen("object", direction, callback);
-      return { direction, callback };
-    });
+  //   const listeners = objs.totalEnergy.map((t, i) => {
+  //     const callback = createCallBack(i);
+  //     const direction = t.address;
+  //     localbus.listen("object", direction, callback);
+  //     return { direction, callback };
+  //   });
 
-    return () => {
-      listeners.forEach(({ direction, callback }) => {
-        localbus.unlisten("object", direction, callback);
-      });
-    };
-  }, [device]);
+  //   return () => {
+  //     listeners.forEach(({ direction, callback }) => {
+  //       localbus.unlisten("object", direction, callback);
+  //     });
+  //   };
+  // }, [device]);
 
   useEffect(() => {
     handleCalculateData();

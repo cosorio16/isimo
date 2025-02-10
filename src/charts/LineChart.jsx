@@ -1,14 +1,20 @@
 import { Chart as ChartJS, defaults } from "chart.js/auto";
+import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
+import useStore from "../store/store";
+import timesobj from "../lib/timeslib";
 
 defaults.responsive = true;
 defaults.maintainAspectRatio = true;
 
 function LineChart() {
+  const {} = useStore();
+  const [data, setData] = useState([]);
+
   return (
     <Line
       data={{
-        labels: ["Enero", "Febrero", "Marzo", "Abril"],
+        labels: timesobj.timeDay,
         datasets: [
           {
             label: "Circuito 1",
@@ -60,8 +66,8 @@ function LineChart() {
         },
         interaction: {
           intersect: false,
-          mode: "nearest"
-        }
+          mode: "nearest",
+        },
       }}
     />
   );

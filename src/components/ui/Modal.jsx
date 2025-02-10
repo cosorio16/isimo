@@ -12,26 +12,29 @@ function Modal() {
 
   const [dataCards, setDataCards] = useState([]);
 
-  useEffect(() => {
-    let currentData = [...dataCards];
 
-    const createCallback = (index) => (e) => {
-      currentData[index] = e;
-      setDataCards([...currentData]);
-    };
+  
 
-    const listeners = objs.modalDirections[device].map((d, i) => {
-      const callback = createCallback(i);
-      localbus.listen("object", d, callback);
-      return { d, callback };
-    });
+  // useEffect(() => {
+  //   let currentData = [...dataCards];
 
-    return () => {
-      listeners.forEach(({ d, callback }) => {
-        localbus.unlisten("object", d, callback);
-      });
-    };
-  }, [device]);
+  //   const createCallback = (index) => (e) => {
+  //     currentData[index] = e;
+  //     setDataCards([...currentData]);
+  //   };
+
+  //   const listeners = objs.modalDirections[device].map((d, i) => {
+  //     const callback = createCallback(i);
+  //     localbus.listen("object", d, callback);
+  //     return { d, callback };
+  //   });
+
+  //   return () => {
+  //     listeners.forEach(({ d, callback }) => {
+  //       localbus.unlisten("object", d, callback);
+  //     });
+  //   };
+  // }, [device]);
 
   // function convertHours(hours) {
   //   let seconds = Math.floor(hours * 3600);
