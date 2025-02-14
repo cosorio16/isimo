@@ -4,17 +4,17 @@ import { Line } from "react-chartjs-2";
 import useStore from "../store/store";
 import timesobj from "../lib/timeslib";
 import Calendar from "../components/schedule/Calendar";
-import { getAllTrends } from "../utils/utils";
+import { getAllTrends, getTrendData } from "../utils/utils";
 
 defaults.responsive = true;
 defaults.maintainAspectRatio = true;
 
 function LineChart({}) {
-  const {} = useStore();
+  const { device, nameDevice } = useStore();
 
   const [data, setData] = useState([]);
-  const [resolution, setResolution] = useState([]);
-  const [trendId, setTrendId] = useState([]);
+  const [resolution, setResolution] = useState(86400);
+  const [trendId, setTrendId] = useState(131);
   const [allTrends, setAllTrends] = useState([]);
 
   const [date, setDate] = useState({
@@ -25,10 +25,10 @@ function LineChart({}) {
 
   const handleSubmitData = useCallback(async () => {
     const body = {
-      resolution: resolution,
+      // resolution: resolution,
       dates_curr: {
-        start: { year: date.year, day: date.day - 1, month: date.month },
-        end: { year: date.year, day: date.day, month: date.month },
+        start: { year: date.year, day: date.day, month: date.month + 1 },
+        end: { year: date.year, day: date.day + 1, month: date.month + 1 },
       },
       id: trendId,
       dates_prev: {
@@ -37,11 +37,12 @@ function LineChart({}) {
       },
     };
 
-    // try {
-    //   await createEvent(body);
-    // } catch (error) {
-    //   console.error(`Error al obtener datos de tendencias: ${error}`);
-    // }
+    try {
+      const data = await getTrendData(body);
+      setData(data);
+    } catch (error) {
+      console.error(`Error al obtener datos de tendencias: ${error}`);
+    }
   }, [resolution, date, trendId]);
 
   useEffect(() => {
@@ -57,7 +58,12 @@ function LineChart({}) {
     fetchAllTrends();
   }, []);
 
-  console.log(allTrends);
+  useEffect(() => {
+    let obj = localbus.encodega("1/0/1");
+    let id = allTrends?.data?.filter((d) => d.object == obj)[0]?.id;
+    console.log(id);
+    handleSubmitData();
+  }, [allTrends]);
 
   return (
     <div className="h-full w-full flex flex-col p-2">
@@ -70,33 +76,9 @@ function LineChart({}) {
           datasets: [
             {
               label: "Circuito 1",
-              data: [24, 19, 21, 32],
+              data: data?.current?.data,
               backgroundColor: "rgba(81,54,133,0.2)",
               borderColor: "rgba(81,54,133,1)",
-              borderWidth: 2,
-              hoverBorderWidth: 4,
-            },
-            {
-              label: "Circuito 2",
-              data: [22, 32, 32, 44],
-              backgroundColor: "rgba(147,213,10,0.2)",
-              borderColor: "rgba(147,213,10,1)",
-              borderWidth: 2,
-              hoverBorderWidth: 4,
-            },
-            {
-              label: "Circuito 3",
-              data: [10, 23, 15, 33],
-              backgroundColor: "rgba(255,185,0,0.2)",
-              borderColor: "rgba(255,185,0,1)",
-              borderWidth: 2,
-              hoverBorderWidth: 4,
-            },
-            {
-              label: "Circuito 4",
-              data: [31, 12, 12, 12],
-              backgroundColor: "rgba(255,105,0,0.2)",
-              borderColor: "rgba(255,105,0,1)",
               borderWidth: 2,
               hoverBorderWidth: 4,
             },
