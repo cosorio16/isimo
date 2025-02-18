@@ -58,12 +58,12 @@ function LineChart({}) {
     fetchAllTrends();
   }, []);
 
-  useEffect(() => {
-    let obj = localbus.encodega("1/0/1");
-    let id = allTrends?.data?.filter((d) => d.object == obj)[0]?.id;
-    console.log(id);
-    handleSubmitData();
-  }, [allTrends]);
+  // useEffect(() => {
+  //   let obj = localbus.encodega("1/0/1");
+  //   let id = allTrends?.data?.filter((d) => d.object == obj)[0]?.id;
+  //   console.log(id);
+  //   handleSubmitData();
+  // }, [allTrends]);
 
   return (
     <div className="h-full w-full flex flex-col p-2">
