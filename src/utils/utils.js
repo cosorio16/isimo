@@ -4,7 +4,7 @@ export async function getAllSchedulers() {
 
   try {
     const response = await fetch(
-      `${window.location.origin}/scada-vis/schedulers/vis-request`,
+      `http://${window.location.host}/scada-vis/schedulers/vis-request`,
       {
         method: "POST",
         headers: {
@@ -13,8 +13,8 @@ export async function getAllSchedulers() {
           "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
           "x-requested-with": "XMLHttpRequest",
           cookie:
-            "user_language=; x-login=1; x-auth=admin:9948d8b065fb42b1cf3b4167693f832c55e6501d5c1806c08f9d950c7fbe8d29",
-          Referer: `${window.location.origin}/scada-vis/schedulers`,
+            "user_language=; x-logout=0; x-auth=; x-fail-cnt=0; x-login=1",
+          Referer: `http://${window.location.host}/scada-vis/schedulers`,
           "Referrer-Policy": "strict-origin-when-cross-origin",
         },
         body: body,
@@ -38,7 +38,7 @@ export async function getEvents(id) {
 
   try {
     const response = await fetch(
-      `${window.location.origin}/scada-vis/schedulers/vis-request`,
+      `http://${window.location.host}/scada-vis/schedulers/vis-request`,
       {
         method: "POST",
         headers: {
@@ -47,8 +47,8 @@ export async function getEvents(id) {
           "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
           "x-requested-with": "XMLHttpRequest",
           cookie:
-            "user_language=; x-login=1; x-auth=admin:9948d8b065fb42b1cf3b4167693f832c55e6501d5c1806c08f9d950c7fbe8d29",
-          Referer: `${window.location.origin}/scada-vis/schedulers`,
+            "user_language=; x-logout=0; x-auth=; x-fail-cnt=0; x-login=1",
+          Referer: `http://${window.location.host}/scada-vis/schedulers`,
           "Referrer-Policy": "strict-origin-when-cross-origin",
         },
         body: body,
@@ -71,7 +71,7 @@ export async function createEvent(data) {
 
   try {
     const response = await fetch(
-      `${window.location.origin}/scada-vis/schedulers/vis-request`,
+      `http://${window.location.host}/scada-vis/schedulers/vis-request`,
       {
         method: "POST",
         headers: {
@@ -80,8 +80,8 @@ export async function createEvent(data) {
           "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
           "x-requested-with": "XMLHttpRequest",
           cookie:
-            "user_language=; x-login=1; x-auth=admin:9948d8b065fb42b1cf3b4167693f832c55e6501d5c1806c08f9d950c7fbe8d29",
-          Referer: `${window.location.origin}/scada-vis/schedulers`,
+            "user_language=; x-logout=0; x-auth=; x-fail-cnt=0; x-login=1",
+          Referer: `http://${window.location.host}/scada-vis/schedulers`,
           "Referrer-Policy": "strict-origin-when-cross-origin",
         },
         body: body,
@@ -105,7 +105,7 @@ export async function deleteEvent(id) {
 
   try {
     const response = await fetch(
-      `${window.location.origin}/scada-vis/schedulers/vis-request`,
+      `http://${window.location.host}/scada-vis/schedulers/vis-request`,
       {
         method: "POST",
         headers: {
@@ -114,8 +114,8 @@ export async function deleteEvent(id) {
           "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
           "x-requested-with": "XMLHttpRequest",
           cookie:
-            "user_language=; x-login=1; x-auth=admin:9948d8b065fb42b1cf3b4167693f832c55e6501d5c1806c08f9d950c7fbe8d29",
-          Referer: `${window.location.origin}/scada-vis/schedulers`,
+            "user_language=; x-logout=0; x-auth=; x-fail-cnt=0; x-login=1",
+          Referer: `http://${window.location.host}/scada-vis/schedulers`,
           "Referrer-Policy": "strict-origin-when-cross-origin",
         },
         body: body,
@@ -136,7 +136,7 @@ export async function deleteEvent(id) {
 export async function getAllTrends() {
   try {
     const response = await fetch(
-      `${window.location.origin}/scada-main/trends/main`,
+      `http://${window.location.host}/scada-main/trends/main`,
       {
         method: "GET",
         headers: {
@@ -145,8 +145,8 @@ export async function getAllTrends() {
           "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
           "x-requested-with": "XMLHttpRequest",
           cookie:
-            "user_language=; x-login=1; x-auth=admin:9948d8b065fb42b1cf3b4167693f832c55e6501d5c1806c08f9d950c7fbe8d29",
-          Referer: `${window.location.origin}/scada-vis/schedulers`,
+            "user_language=; x-logout=0; x-auth=; x-fail-cnt=0; x-login=1",
+          Referer: `http://${window.location.host}/scada-vis/schedulers`,
           "Referrer-Policy": "strict-origin-when-cross-origin",
         },
         body: null,
@@ -169,7 +169,7 @@ export async function getTrendData(data) {
 
   try {
     const response = await fetch(
-      `${window.location.origin}/scada-vis/trends/fetch`,
+      `http://${window.location.host}/scada-vis/trends/fetch`,
       {
         method: "POST",
         headers: {
@@ -178,8 +178,8 @@ export async function getTrendData(data) {
           "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
           "x-requested-with": "XMLHttpRequest",
           cookie:
-            "user_language=; x-login=1; x-auth=admin:9948d8b065fb42b1cf3b4167693f832c55e6501d5c1806c08f9d950c7fbe8d29",
-          Referer: `${window.location.origin}/scada-vis/schedulers`,
+            "user_language=; x-logout=0; x-auth=; x-fail-cnt=0; x-login=1",
+          Referer: `http://${window.location.host}/scada-vis/schedulers`,
           "Referrer-Policy": "strict-origin-when-cross-origin",
         },
         body: body,

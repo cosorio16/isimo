@@ -41,26 +41,26 @@ function MeditionCard({ circuit, data }) {
     handleFilterDirections();
   }, [optionSelected]);
 
-  // useEffect(() => {
-  //   let values = [...meterValues];
+  useEffect(() => {
+    let values = [...meterValues];
 
-  //   const createCallback = (index) => (e) => {
-  //     values[index] = e;
-  //     setMeterValues([...values]);
-  //   };
+    const createCallback = (index) => (e) => {
+      values[index] = e;
+      setMeterValues([...values]);
+    };
 
-  //   const listeners = directions.map((d, i) => {
-  //     const callback = createCallback(i);
-  //     localbus.listen("object", d, callback);
-  //     return { d, callback };
-  //   });
+    const listeners = directions.map((d, i) => {
+      const callback = createCallback(i);
+      localbus.listen("object", d, callback);
+      return { d, callback };
+    });
 
-  //   return () => {
-  //     listeners.forEach(({ d, callback }) => {
-  //       localbus.unlisten("object", d, callback);
-  //     });
-  //   };
-  // }, [directions]);
+    return () => {
+      listeners.forEach(({ d, callback }) => {
+        localbus.unlisten("object", d, callback);
+      });
+    };
+  }, [directions]);
 
   return (
     <div className="border rounded px-5 py-7 flex flex-col text-[#606060] gap-2 text-lg bg-white shadow hover:shadow-xl transition-all duration-300">

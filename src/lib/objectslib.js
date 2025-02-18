@@ -1841,13 +1841,13 @@ let modalLineChart = {
   0: "1/1/1",
   1: "1/1/2",
   2: "1/1/3",
-  4: "1/1/5",
-  5: "1/1/6",
-  6: "3/0/25",
-  7: "3/1/25",
-  8: "3/2/25",
-  3: "1/1/4",
-}
+  3: "1/1/5",
+  4: "1/1/6",
+  5: "3/0/25",
+  6: "3/1/25",
+  7: "3/2/25",
+  8: "1/1/4",
+};
 
 export default {
   objects,
@@ -1862,4 +1862,5 @@ export default {
   meditionsObjects,
   airsEnergy,
   modalDirections,
+  modalLineChart,
 };

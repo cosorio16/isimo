@@ -57,43 +57,43 @@ function Meditions() {
     { title: "Consumo Aires", icon: "2", unit: "kWh", data: meditions[7] || 0 },
   ];
 
-  // useEffect(() => {
-  //   let currentMeditions = [...meditions];
-  //   let sum = [];
+  useEffect(() => {
+    let currentMeditions = [...meditions];
+    let sum = [];
 
-  //   const createCallback = (index) => (e) => {
-  //     currentMeditions[index] = e;
-  //     setMeditions([...currentMeditions]);
-  //   };
+    const createCallback = (index) => (e) => {
+      currentMeditions[index] = e;
+      setMeditions([...currentMeditions]);
+    };
 
-  //   const callbackAir = (index) => (e) => {
-  //     sum[index] = e;
-  //     let total = sum.reduce((a, b) => a + b);
-  //     currentMeditions[7] = total;
-  //     setMeditions([...currentMeditions]);
-  //   };
+    const callbackAir = (index) => (e) => {
+      sum[index] = e;
+      let total = sum.reduce((a, b) => a + b);
+      currentMeditions[7] = total;
+      setMeditions([...currentMeditions]);
+    };
 
-  //   const listeners = objs.meditionsObjects.map((o, i) => {
-  //     const callback = createCallback(i);
-  //     localbus.listen("object", o, callback);
-  //     return { o, callback };
-  //   });
+    const listeners = objs.meditionsObjects.map((o, i) => {
+      const callback = createCallback(i);
+      localbus.listen("object", o, callback);
+      return { o, callback };
+    });
 
-  //   const listenersAir = objs.airsEnergy.map((o, i) => {
-  //     const callback = callbackAir(i);
-  //     localbus.listen("object", o, callback);
-  //     return { o, callback };
-  //   });
+    const listenersAir = objs.airsEnergy.map((o, i) => {
+      const callback = callbackAir(i);
+      localbus.listen("object", o, callback);
+      return { o, callback };
+    });
 
-  //   return () => {
-  //     listeners.forEach(({ o, callback }) => {
-  //       localbus.unlisten("object", o, callback);
-  //     });
-  //     listenersAir.forEach(({ o, callback }) => {
-  //       localbus.unlisten("object", o, callback);
-  //     });
-  //   };
-  // }, []);
+    return () => {
+      listeners.forEach(({ o, callback }) => {
+        localbus.unlisten("object", o, callback);
+      });
+      listenersAir.forEach(({ o, callback }) => {
+        localbus.unlisten("object", o, callback);
+      });
+    };
+  }, []);
 
   return (
     <>

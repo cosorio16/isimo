@@ -5,6 +5,7 @@ import useStore from "../store/store";
 import timesobj from "../lib/timeslib";
 import Calendar from "../components/schedule/Calendar";
 import { getAllTrends, getTrendData } from "../utils/utils";
+import objs from "../lib/objectslib";
 
 defaults.responsive = true;
 defaults.maintainAspectRatio = true;
@@ -58,12 +59,15 @@ function LineChart({}) {
     fetchAllTrends();
   }, []);
 
-  // useEffect(() => {
-  //   let obj = localbus.encodega("1/0/1");
-  //   let id = allTrends?.data?.filter((d) => d.object == obj)[0]?.id;
-  //   console.log(id);
-  //   handleSubmitData();
-  // }, [allTrends]);
+  useEffect(() => {
+    let obj = localbus.encodega(`${objs.modalLineChart[device]}`);
+    let id = allTrends?.data?.filter((d) => d.object == obj)[0]?.id;
+    setTrendId(id);
+  }, [allTrends, device]);
+
+  useEffect(() => {
+    handleSubmitData();
+  }, [trendId]);
 
   return (
     <div className="h-full w-full flex flex-col p-2">

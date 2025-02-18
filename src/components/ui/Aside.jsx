@@ -147,6 +147,7 @@ function Aside() {
       }`}
     >
       <div className="grow h-full p-5">
+        {/* desactivar todos los horarios */}
         <div
           className={`w-full grow gap-5 overflow-y-scroll bg-white p-5 h-full rounded-sm  ${
             events.length
