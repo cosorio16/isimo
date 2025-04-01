@@ -59,11 +59,11 @@ function LineChart({}) {
     fetchAllTrends();
   }, []);
 
-  useEffect(() => {
-    let obj = localbus.encodega(`${objs.modalLineChart[device]}`);
-    let id = allTrends?.data?.filter((d) => d.object == obj)[0]?.id;
-    setTrendId(id);
-  }, [allTrends, device]);
+  // useEffect(() => {
+  //   let obj = localbus.encodega(`${objs.modalLineChart[device]}`);
+  //   let id = allTrends?.data?.filter((d) => d.object == obj)[0]?.id;
+  //   setTrendId(id);
+  // }, [allTrends, device]);
 
   useEffect(() => {
     handleSubmitData();

@@ -7,6 +7,7 @@ import Pie from "../charts/Pie";
 import objs from "../lib/objectslib";
 import { useEffect, useState } from "react";
 import Calendar from "../components/schedule/Calendar";
+import MeditionsAll from "../components/data/MeditionsAll";
 
 function Meditions() {
   const [meditions, setMeditions] = useState([]);
@@ -57,58 +58,61 @@ function Meditions() {
     { title: "Consumo Aires", icon: "2", unit: "kWh", data: meditions[7] || 0 },
   ];
 
-  useEffect(() => {
-    let currentMeditions = [...meditions];
-    let sum = [];
+  // useEffect(() => {
+  //   let currentMeditions = [...meditions];
+  //   let sum = [];
 
-    const createCallback = (index) => (e) => {
-      currentMeditions[index] = e;
-      setMeditions([...currentMeditions]);
-    };
+  //   const createCallback = (index) => (e) => {
+  //     currentMeditions[index] = e;
+  //     setMeditions([...currentMeditions]);
+  //   };
 
-    const callbackAir = (index) => (e) => {
-      sum[index] = e;
-      let total = sum.reduce((a, b) => a + b);
-      currentMeditions[7] = total;
-      setMeditions([...currentMeditions]);
-    };
+  //   const callbackAir = (index) => (e) => {
+  //     sum[index] = e;
+  //     let total = sum.reduce((a, b) => a + b);
+  //     currentMeditions[7] = total;
+  //     setMeditions([...currentMeditions]);
+  //   };
 
-    const listeners = objs.meditionsObjects.map((o, i) => {
-      const callback = createCallback(i);
-      localbus.listen("object", o, callback);
-      return { o, callback };
-    });
+  //   const listeners = objs.meditionsObjects.map((o, i) => {
+  //     const callback = createCallback(i);
+  //     localbus.listen("object", o, callback);
+  //     return { o, callback };
+  //   });
 
-    const listenersAir = objs.airsEnergy.map((o, i) => {
-      const callback = callbackAir(i);
-      localbus.listen("object", o, callback);
-      return { o, callback };
-    });
+  //   const listenersAir = objs.airsEnergy.map((o, i) => {
+  //     const callback = callbackAir(i);
+  //     localbus.listen("object", o, callback);
+  //     return { o, callback };
+  //   });
 
-    return () => {
-      listeners.forEach(({ o, callback }) => {
-        localbus.unlisten("object", o, callback);
-      });
-      listenersAir.forEach(({ o, callback }) => {
-        localbus.unlisten("object", o, callback);
-      });
-    };
-  }, []);
+  //   return () => {
+  //     listeners.forEach(({ o, callback }) => {
+  //       localbus.unlisten("object", o, callback);
+  //     });
+  //     listenersAir.forEach(({ o, callback }) => {
+  //       localbus.unlisten("object", o, callback);
+  //     });
+  //   };
+  // }, []);
 
   return (
     <>
       <Header />
       <main className="flex flex-col px-10 py-10 pt-32 gap-10 bg-zinc-50 min-h-screen text-[#606060]">
+        <section className="grid grid-cols-4 gap-5">
+          {meditions1.map(({ title, icon, unit, data }) => (
+            <Datacard data={data} title={title} icon={icon} unit={unit} />
+          ))}
+        </section>
+
         <section className="flex items-center justify-between">
           {/* <Calendar /> */}
           {/* <button className="border px-5 py-2 text-lg font-medium text-white bg-[#513685] w-fit rounded shadow">
             Descargar Datos
           </button> */}
-        </section>
-        <section className="grid grid-cols-4 gap-5">
-          {meditions1.map(({ title, icon, unit, data }) => (
-            <Datacard data={data} title={title} icon={icon} unit={unit} />
-          ))}
+
+          <MeditionsAll />
         </section>
 
         <section className="grid grid-cols-2 gap-5">

@@ -23,48 +23,48 @@ function Home() {
     { circuit: "4", data: objs.circuit4 },
   ];
 
-  useEffect(() => {
-    const callback = (e) => {
-      setEnergyTotal(e);
-    };
-    localbus.listen("object", "33/0/92", callback);
-    return () => {
-      localbus.unlisten("object", "33/0/92", callback);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const callback = (e) => {
+  //     setEnergyTotal(e);
+  //   };
+  //   localbus.listen("object", "33/0/92", callback);
+  //   return () => {
+  //     localbus.unlisten("object", "33/0/92", callback);
+  //   };
+  // }, []);
 
-  useEffect(() => {
-    const callback = (e) => {
-      setTemperature(e);
-    };
+  // useEffect(() => {
+  //   const callback = (e) => {
+  //     setTemperature(e);
+  //   };
 
-    localbus.listen("object", "2/1/1", callback);
-    return () => {
-      localbus.unlisten("object", "2/1/1", callback);
-    };
-  }, []);
+  //   localbus.listen("object", "2/1/1", callback);
+  //   return () => {
+  //     localbus.unlisten("object", "2/1/1", callback);
+  //   };
+  // }, []);
 
-  useEffect(() => {
-    let devicesStatus = [];
+  // useEffect(() => {
+  //   let devicesStatus = [];
 
-    const createCallback = (index) => (e) => {
-      devicesStatus[index] = e ? 1 : 0;
-      let total = devicesStatus.reduce((a, b) => a + b);
-      setDevices(total);
-    };
+  //   const createCallback = (index) => (e) => {
+  //     devicesStatus[index] = e ? 1 : 0;
+  //     let total = devicesStatus.reduce((a, b) => a + b);
+  //     setDevices(total);
+  //   };
     
-    const listeners = objs.selectorSignal.map((o, i) => {
-      const callback = createCallback(i);
-      localbus.listen("object", o, callback);
-      return { o, callback };
-    });
+  //   const listeners = objs.selectorSignal.map((o, i) => {
+  //     const callback = createCallback(i);
+  //     localbus.listen("object", o, callback);
+  //     return { o, callback };
+  //   });
 
-    return () => {
-      listeners.forEach(({ o, callback }) => {
-        localbus.unlisten("object", o, callback);
-      });
-    };
-  }, []);
+  //   return () => {
+  //     listeners.forEach(({ o, callback }) => {
+  //       localbus.unlisten("object", o, callback);
+  //     });
+  //   };
+  // }, []);
 
   useEffect(() => {
     setAmount(quantityAmount * energyTotal);
@@ -93,7 +93,7 @@ function Home() {
             unit={"°C"}
             title={"Temperatura recinto"}
           />
-          <DataCard icon={"4"} data={devices} title={"Dispositivos"} />
+          <DataCard icon={"7"} data={devices} title={"Dispositivos"} />
         </section>
         <section className="border p-4 bg-white rounded h-[800px] flex items-center justify-center">
           <BarChart />
