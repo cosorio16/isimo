@@ -39,12 +39,12 @@ function DeviceCard({
 
   const handleAddRange = () => {
     range < 32 && setRange((range) => range + 1);
-    range < 32 && localbus.write(`${rangeDirection}`, range + 1);
+    // range < 32 && localbus.write(`${rangeDirection}`, range + 1);
   };
 
   const handleMinusRange = () => {
     range > 16 && setRange((range) => range - 1);
-    range > 16 && localbus.write(`${rangeDirection}`, range - 1);
+    // range > 16 && localbus.write(`${rangeDirection}`, range - 1);
   };
 
   const callback = (e) => {
