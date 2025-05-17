@@ -64,8 +64,8 @@ function MeditionCard({ circuit, data }) {
 
   return (
     <div className="border rounded px-5 py-7 flex flex-col text-[#606060] gap-2 text-lg bg-white shadow hover:shadow-xl transition-all duration-300">
-      <div className="flex justify-between items-center border-b py-2 ">
-        <h1 className="text-2xl font-medium min-w-fit">
+      <div className="flex flex-col xl:flex-row justify-between items-center border-b py-2 ">
+        <h1 className="xl:text-2xl font-medium min-w-fit">
           {optionSelected} - Circuito {circuit}
         </h1>
         <Select

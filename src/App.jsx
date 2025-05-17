@@ -1,3 +1,4 @@
+import Demobanner from "./components/Demobanner";
 import useStore from "./store/store";
 import Control from "./views/Control";
 import Home from "./views/Home";
@@ -10,6 +11,7 @@ function App() {
       {view == 0 && <Home />}
       {view == 1 && <Control />}
       {view == 2 && <Meditions />}
+      <Demobanner />
     </>
   );
 }

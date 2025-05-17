@@ -24,40 +24,57 @@ function LineChart({}) {
     day: new Date().getDate(),
   });
 
-  const handleSubmitData = useCallback(async () => {
-    const body = {
-      // resolution: resolution,
-      dates_curr: {
-        start: { year: date.year, day: date.day, month: date.month + 1 },
-        end: { year: date.year, day: date.day + 1, month: date.month + 1 },
-      },
-      id: trendId,
-      dates_prev: {
-        start: { year: 2025, day: 1, month: 1 },
-        end: { year: 2025, day: 1, month: 3 },
-      },
-    };
+  const handleSetData = () => {
+    const tamaño = 288;
+    const rangoMin = 1;
+    const rangoMax = 100;
 
-    try {
-      const data = await getTrendData(body);
-      setData(data);
-    } catch (error) {
-      console.error(`Error al obtener datos de tendencias: ${error}`);
-    }
-  }, [resolution, date, trendId]);
+    const arrayRandom = Array.from(
+      { length: tamaño },
+      () => Math.floor(Math.random() * (rangoMax - rangoMin + 1)) + rangoMin
+    );
+
+    setData(arrayRandom);
+  };
 
   useEffect(() => {
-    const fetchAllTrends = async () => {
-      try {
-        const data = await getAllTrends();
-        setAllTrends(data);
-      } catch (error) {
-        console.error(`Error al obtener todas las tendencias: ${error}`);
-      }
-    };
+    handleSetData();
+  }, [date]);
 
-    fetchAllTrends();
-  }, []);
+  // const handleSubmitData = useCallback(async () => {
+  //   const body = {
+  //     // resolution: resolution,
+  //     dates_curr: {
+  //       start: { year: date.year, day: date.day, month: date.month + 1 },
+  //       end: { year: date.year, day: date.day + 1, month: date.month + 1 },
+  //     },
+  //     id: trendId,
+  //     dates_prev: {
+  //       start: { year: 2025, day: 1, month: 1 },
+  //       end: { year: 2025, day: 1, month: 3 },
+  //     },
+  //   };
+
+  //   try {
+  //     const data = await getTrendData(body);
+  //     setData(data);
+  //   } catch (error) {
+  //     console.error(`Error al obtener datos de tendencias: ${error}`);
+  //   }
+  // }, [resolution, date, trendId]);
+
+  // useEffect(() => {
+  //   const fetchAllTrends = async () => {
+  //     try {
+  //       const data = await getAllTrends();
+  //       setAllTrends(data);
+  //     } catch (error) {
+  //       console.error(`Error al obtener todas las tendencias: ${error}`);
+  //     }
+  //   };
+
+  //   fetchAllTrends();
+  // }, []);
 
   // useEffect(() => {
   //   let obj = localbus.encodega(`${objs.modalLineChart[device]}`);
@@ -65,9 +82,9 @@ function LineChart({}) {
   //   setTrendId(id);
   // }, [allTrends, device]);
 
-  useEffect(() => {
-    handleSubmitData();
-  }, [trendId]);
+  // useEffect(() => {
+  //   handleSubmitData();
+  // }, [trendId]);
 
   return (
     <div className="h-full w-full flex flex-col p-2">
@@ -80,7 +97,8 @@ function LineChart({}) {
           datasets: [
             {
               label: "Circuito 1",
-              data: data?.current?.data,
+              // data: data?.current?.data,
+              data: data,
               backgroundColor: "rgba(81,54,133,0.2)",
               borderColor: "rgba(81,54,133,1)",
               borderWidth: 2,

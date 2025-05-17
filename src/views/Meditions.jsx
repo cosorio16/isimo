@@ -99,10 +99,16 @@ function Meditions() {
   return (
     <>
       <Header />
-      <main className="flex flex-col px-10 py-10 pt-32 gap-10 bg-zinc-50 min-h-screen text-[#606060]">
-        <section className="grid grid-cols-4 gap-5">
+      <main className="flex flex-col px-2 xl:px-10 py-10 pt-32 gap-10 bg-zinc-50 min-h-screen text-[#606060]">
+        <section className="grid xl:grid-cols-4 gap-5">
           {meditions1.map(({ title, icon, unit, data }) => (
-            <Datacard data={data} title={title} icon={icon} unit={unit} />
+            <Datacard
+              data={data}
+              title={title}
+              icon={icon}
+              unit={unit}
+              key={title}
+            />
           ))}
         </section>
 
@@ -115,14 +121,14 @@ function Meditions() {
           <MeditionsAll />
         </section>
 
-        <section className="grid grid-cols-2 gap-5">
-          <div className="border bg-white shadow rounded py-5">
+        <section className="grid grid-cols-1 xl:grid-cols-2 gap-5">
+          <div className="border bg-white shadow rounded py-5 hidden xl:block">
             <BarChart />
           </div>
-          <div className="border bg-white shadow rounded py-5">
+          <div className="border bg-white shadow rounded py-5 hidden xl:block">
             <LineChart />
           </div>
-          <div className="border bg-white shadow rounded py-5">
+          <div className="border bg-white shadow rounded py-5 hidden xl:block">
             <LineChart />
           </div>
           <div className="border bg-white shadow rounded py-5 h-[500px] flex items-center justify-center">
@@ -130,13 +136,19 @@ function Meditions() {
           </div>
         </section>
 
-        <section className="grid grid-cols-4 gap-5">
+        <section className="grid xl:grid-cols-4 gap-5">
           {meditions2.map(({ title, icon, unit, data }) => (
-            <Datacard data={data} title={title} icon={icon} unit={unit} />
+            <Datacard
+              data={data}
+              title={title}
+              icon={icon}
+              unit={unit}
+              key={title}
+            />
           ))}
         </section>
 
-        <section className="grid grid-cols-2 gap-5">
+        <section className="grid xl:grid-cols-2 gap-5">
           {circuitData.map(({ circuit, data }) => (
             <MeditionCard key={circuit} circuit={circuit} data={data} />
           ))}

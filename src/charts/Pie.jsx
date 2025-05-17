@@ -9,23 +9,23 @@ function Pie() {
   const [data, setData] = useState([]);
   const [energy, setEnergy] = useState([1, 1]);
 
-  const handleCalculateData = () => {
-    if (device > 4 && device < 8) {
-      if (device == 5) {
-        let consumeTotal = energy[0] - energy[1];
-        setData([consumeTotal, energy[1]]);
-      } else if (device == 6) {
-        let consumeTotal = energy[0] - energy[2];
-        setData([consumeTotal, energy[2]]);
-      } else if (device == 7) {
-        let consumeTotal = energy[0] - energy[3];
-        setData([consumeTotal, energy[3]]);
-      }
-    } else {
-      let airsCosume = energy[1] + energy[2] + energy[3];
-      setData([energy[0] - airsCosume, airsCosume]);
-    }
-  };
+  // const handleCalculateData = () => {
+  //   if (device > 4 && device < 8) {
+  //     if (device == 5) {
+  //       let consumeTotal = energy[0] - energy[1];
+  //       setData([consumeTotal, energy[1]]);
+  //     } else if (device == 6) {
+  //       let consumeTotal = energy[0] - energy[2];
+  //       setData([consumeTotal, energy[2]]);
+  //     } else if (device == 7) {
+  //       let consumeTotal = energy[0] - energy[3];
+  //       setData([consumeTotal, energy[3]]);
+  //     }
+  //   } else {
+  //     let airsCosume = energy[1] + energy[2] + energy[3];
+  //     setData([energy[0] - airsCosume, airsCosume]);
+  //   }
+  // };
 
   // useEffect(() => {
   //   let values = [...energy];
@@ -48,10 +48,24 @@ function Pie() {
   //   };
   // }, [device]);
 
-  useEffect(() => {
-    handleCalculateData();
-  }, [energy]);
+  // useEffect(() => {
+  //   handleCalculateData();
+  // }, [energy]);
 
+  const handleSetData = () => {
+    const rangoMin = 0;
+    const rangoMax = 100;
+    const arrayRandom = [
+      Math.floor(Math.random() * (rangoMax - rangoMin + 1)) + rangoMin,
+      Math.floor(Math.random() * (rangoMax - rangoMin + 1)) + rangoMin,
+    ];
+
+    setData(arrayRandom);
+  };
+
+  useEffect(() => {
+    handleSetData();
+  }, []);
 
   return (
     <PieChart

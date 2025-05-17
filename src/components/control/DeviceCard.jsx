@@ -141,7 +141,7 @@ function DeviceCard({
           />
         </div>
       )}
-      <div className="flex justify-between items-center">
+      <div className="hidden xl:flex justify-between items-center">
         <button
           className="flex items-center gap-2 p-2 rounded-full hover:bg-[#513685] hover:bg-opacity-15 transition-all duration-200 font-medium"
           onClick={(e) => {

@@ -9,7 +9,7 @@ function Select({ name, options, setOptionSelected, optionSelected, full }) {
       onClick={() => setShow(!show)}
       onMouseLeave={() => setShow(false)}
       className={`relative border w-full px-5 py-2 rounded flex items-center ${
-        full ? "max-w-full" : "max-w-44"
+        full ? "max-w-full" : "max-w-56"
       } text-ellipsis justify-between cursor-pointer ring-[#513685] ring-offset-1 hover:ring-2 transition-all select-none`}
     >
       <p className="text-ellipsis truncate">

@@ -1,8 +1,12 @@
 import Select from "../ui/Select";
 import NumberFlow from "@number-flow/react";
+import { useState } from "react";
 
 function MeditionsAll() {
+  
   let options = ["Circuito 1", "Circuito 2", "Circuito 3", "Circuito 4"];
+  const [optionSelected, setOptionSelected] = useState(options[0]);
+
   let dataNames = [
     "Corriente A",
     "Corriente B",
@@ -40,13 +44,18 @@ function MeditionsAll() {
   return (
     <div className="flex flex-col gap-5 border rounded p-10 w-full min-h-96 bg-white shadow">
       <div>
-        <Select options={options} name={options[0]} />
+        <Select
+          options={options}
+          name={options[0]}
+          optionSelected={optionSelected}
+          setOptionSelected={setOptionSelected}
+        />
       </div>
 
-      <div className="grid grid-cols-6 gap-5 items-center justify-items-center">
+      <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-5 items-center justify-items-center">
         {dataNames.map((n, i) => (
-          <div className="flex flex-col gap-1 w-full">
-            <span key={i} className="text-[#513685] font-medium">
+          <div key={i} className="flex flex-col gap-1 w-full">
+            <span className="text-[#513685] font-medium">
               {n}
             </span>
             <span className="border px-5 py-2 rounded bg-slate-100 font-semibold text-slate-600 w-full">

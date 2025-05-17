@@ -73,8 +73,8 @@ function Home() {
   return (
     <>
       <Header />
-      <main className="flex flex-col px-16 lg:px-24 2xl:px-32 py-10 pt-32 gap-10 bg-zinc-50">
-        <section className="grid grid-cols-4 gap-5">
+      <main className="flex flex-col px-4 md:px-16 lg:px-24 2xl:px-32 py-10 pt-32 gap-10 bg-zinc-50 pb-72">
+        <section className="grid xl:grid-cols-4 gap-1 md:gap-5">
           <DataCard
             icon={"1"}
             data={amount}
@@ -95,18 +95,21 @@ function Home() {
           />
           <DataCard icon={"7"} data={devices} title={"Dispositivos"} />
         </section>
-        <section className="border p-4 bg-white rounded h-[800px] flex items-center justify-center">
+
+        <section className="hidden  border p-4 bg-white rounded h-fit xl:h-[800px] lg:flex items-center justify-center">
           <BarChart />
         </section>
-        <section className="grid gap-5 grid-cols-3">
-          <div className="col-span-2 bg-white border rounded p-2">
+
+        <section className="grid gap-5 xl:grid-cols-3">
+          <div className="hidden lg:block col-span-2 bg-white border rounded p-2">
             <LineChart />
           </div>
-          <div className="border rounded bg-white p-2">
+          <div className=" border rounded bg-white p-2">
             <Pie />
           </div>
         </section>
-        <section className="grid grid-cols-2 gap-5">
+
+        <section className="grid grid-cols-1 xl:grid-cols-2 gap-5">
           {circuitData.map(({ circuit, data }) => (
             <MeditionCard key={circuit} circuit={circuit} data={data} />
           ))}
