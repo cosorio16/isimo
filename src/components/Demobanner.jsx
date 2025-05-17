@@ -15,7 +15,7 @@ function Demobanner() {
     <>
       {show &&
         createPortal(
-          <div className="fixed h-fit py-5 w-screen left-0 bottom-0 flex flex-col items-center justify-center bg-[#513685] text-white px-5 xl:px-32  gap-5 xl:gap-20">
+          <div className="fixed h-fit py-5 w-screen left-0 bottom-0 flex flex-col items-center justify-center bg-[#513685] text-white px-5 xl:px-32 lg:flex-row gap-5 xl:gap-20">
             <p className="text-sm">
               Este proyecto es una demostración interactiva del diseño de la
               interfaz del dashboard utilizado para Tiendas Isimo. Aunque fui
