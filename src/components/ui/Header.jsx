@@ -58,7 +58,6 @@ function Header() {
                 <Settings sizes={30} />
               </button>
             )}
-            <button></button>
           </div>
         </div>
       </header>
@@ -71,9 +70,23 @@ function Header() {
           className="size-16 rounded-full aspect-square object-contain bg-[#513685] p-2"
         />
 
-        <button onClick={() => setShowMenu(true)}>
-          {showMenu ? <Close sizes={45} /> : <MenuIcon sizes={45} />}
-        </button>
+        <div className="flex items-center gap-2">
+          <button onClick={() => setShowMenu(!showMenu)}>
+            {showMenu ? <Close sizes={45} /> : <MenuIcon sizes={45} />}
+          </button>
+          {view == 0 && (
+            <button onClick={() => togglePopup(true)} className="relative">
+              {quantityAmount == 0 && (
+                <>
+                  <span className="size-3 rounded-full bg-red-600 absolute top-0 right-0 animate-ping"></span>
+                  <span className="size-3 rounded-full bg-red-600 absolute top-0 right-0"></span>
+                </>
+              )}
+
+              <Settings sizes={35} />
+            </button>
+          )}
+        </div>
 
         {showMenu && (
           <nav className="absolute top-full bg-white w-screen flex flex-col gap-2 px-10 left-0 py-3">

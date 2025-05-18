@@ -100,7 +100,7 @@ function Meditions() {
     <>
       <Header />
       <main className="flex flex-col px-2 xl:px-10 py-10 pt-32 gap-10 bg-zinc-50 min-h-screen text-[#606060]">
-        <section className="grid xl:grid-cols-4 gap-5">
+        <section className="grid xl:grid-cols-4 gap-1 xl:gap-5">
           {meditions1.map(({ title, icon, unit, data }) => (
             <Datacard
               data={data}
@@ -136,7 +136,7 @@ function Meditions() {
           </div>
         </section>
 
-        <section className="grid xl:grid-cols-4 gap-5">
+        <section className="grid xl:grid-cols-4 gap-1 xl:gap-5">
           {meditions2.map(({ title, icon, unit, data }) => (
             <Datacard
               data={data}

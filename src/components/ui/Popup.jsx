@@ -21,7 +21,7 @@ function Popup() {
   return (
     <>
       <div
-        className={`fixed bg-black  inset-0 z-20  flex items-center justify-center ${
+        className={`fixed bg-black px-2  inset-0 z-20  flex items-center justify-center ${
           popup ? "bg-opacity-50" : "bg-opacity-0 pointer-events-none"
         } transition-all duration-300`}
       >
