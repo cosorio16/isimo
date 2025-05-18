@@ -18,10 +18,12 @@ function Demobanner() {
           <div className="fixed h-fit py-5 w-screen left-0 bottom-0 flex flex-col items-center justify-center bg-[#513685] text-white px-5 xl:px-32 lg:flex-row gap-5 xl:gap-20">
             <p className="text-sm">
               Este proyecto es una demostración interactiva del diseño de la
-              interfaz del dashboard utilizado para Tiendas Isimo. Aunque fui
-              parte del equipo de desarrollo en una empresa especializada en
-              domótica, este prototipo es solo una muestra de mi trabajo y no
-              representa una implementación oficial ni activa.
+              interfaz del dashboard utilizado para Tiendas Isimo. Aunque fui el
+              único encargado de desarrollarlo dentro de una empresa
+              especializada en domótica, es importante destacar que este
+              prototipo no es una implementación oficial ni está en uso activo.
+              Es simplemente una muestra de mi trabajo y un ejemplo de lo que se
+              podría lograr.
             </p>
             <button
               onClick={() => demoOnFalse()}
